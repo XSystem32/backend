@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class Junction {
 
-    private long id;
+    private String id;
     private Date creationDate;
     private String userCreated;
     private String host;
@@ -25,23 +25,11 @@ public class Junction {
 
     }
 
-    public Junction(long id, Date creationDate, String userCreated, String host, String context, String ordning, String server, Date datoPilo, Date datoProd) {
-        this.id = id;
-        this.creationDate = creationDate;
-        this.userCreated = userCreated;
-        this.host = host;
-        this.context = context;
-        this.ordning = ordning;
-        this.server = server;
-        this.datoPilo = datoPilo;
-        this.datoProd = datoProd;
-    }
-
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

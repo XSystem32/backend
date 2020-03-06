@@ -1,75 +1,71 @@
 [
   {
-    "id": 1,
+    "id": "1",
     "host": "Hostinger",
     "context": "",
     "ordning": "ATP UDK",
-    "server": null,
-    "datoPilo": "2020-02-24",
-    "datoProd": "2020-02-24"
+    "datoPilo": "Feb 24, 2020 12:00:00 AM",
+    "datoProd": "Feb 24, 2020 12:00:00 AM"
   },
   {
-    "id": 2,
+    "id": "2",
     "host": "Hostinger",
     "context": "",
     "ordning": "ATP UDK",
     "server": "XFE",
-    "datoPilo": "2020-02-24",
-    "datoProd": "2020-02-24"
+    "datoPilo": "Feb 24, 2020 12:00:00 AM",
+    "datoProd": "Feb 24, 2020 12:00:00 AM"
   },
   {
-    "id": 3,
+    "id": "3",
     "host": "DreamHost",
     "context": "",
     "ordning": "Feriepenge",
     "server": "Liberty Server",
-    "datoPilo": "2020-02-24",
-    "datoProd": "2020-02-24"
+    "datoPilo": "Feb 24, 2020 12:00:00 AM",
+    "datoProd": "Feb 24, 2020 12:00:00 AM"
   },
   {
-    "id": 4,
+    "id": "4",
     "host": "A2Hosting",
     "context": "",
     "ordning": "Folkespension",
     "server": "LDAP2",
-    "datoPilo": "2020-02-24",
-    "datoProd": "2020-02-24"
+    "datoPilo": "Feb 24, 2020 12:00:00 AM",
+    "datoProd": "Feb 24, 2020 12:00:00 AM"
   },
   {
-    "id": 5,
+    "id": "5",
     "host": "Hostinger",
     "context": "",
     "ordning": "ATP UDK",
     "server": "XFE",
-    "datoPilo": "2020-02-24",
-    "datoProd": "2020-02-24"
+    "datoPilo": "Feb 24, 2020 12:00:00 AM",
+    "datoProd": "Feb 24, 2020 12:00:00 AM"
   },
   {
-    "id": 6,
+    "id": "6",
     "host": "Hostinger",
     "context": "\"",
     "ordning": "ATP UDK",
     "server": "XFE",
-    "datoPilo": "2020-02-24",
-    "datoProd": "2020-02-24"
+    "datoPilo": "Feb 24, 2020 12:00:00 AM",
+    "datoProd": "Feb 24, 2020 12:00:00 AM"
   },
   {
-    "id": 7,
+    "id": "7",
     "host": "Privat",
     "context": "lll",
     "ordning": "ATP UDK",
     "server": "XFE",
-    "datoPilo": "2020-02-08",
-    "datoProd": "2020-02-15"
+    "datoPilo": "Feb 8, 2020 12:00:00 AM",
+    "datoProd": "Feb 15, 2020 12:00:00 AM"
   },
   {
-    "id" : 8,
-    "userCreated" : "",
-    "host" : null,
-    "context" : "",
-    "ordning" : null,
-    "server" : null,
-    "datoPilo" : "2020-03-06",
-    "datoProd" : "2020-03-06"
+    "id": "8",
+    "userCreated": "",
+    "context": "",
+    "datoPilo": "Mar 6, 2020 12:00:00 AM",
+    "datoProd": "Mar 6, 2020 12:00:00 AM"
   }
 ]

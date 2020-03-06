@@ -1,24 +1,28 @@
 package com.example.demo.FormRescources;
 import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectReader;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.reflect.TypeToken;
-import jdk.internal.org.objectweb.asm.TypeReference;
 import org.springframework.stereotype.Service;
 import java.io.*;
 import java.lang.reflect.Array;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 @Service
 public class JunctionService {
 
-    private static List <Junction> junctions = new ArrayList<>();
 
-    private static int idCounter = 0;
 
     public List<Junction> findAll() {
         InputStream is = null;
@@ -27,7 +31,6 @@ public class JunctionService {
             Reader r = new InputStreamReader(is, "UTF-8");
             Gson gson = new GsonBuilder().create();
             List <Junction> localJunctions = gson.fromJson(r, new TypeToken<List<Junction>>() {}.getType());
-            localJunctions.addAll(junctions);
             return localJunctions;
         } catch (FileNotFoundException | UnsupportedEncodingException e) {
           return new ArrayList();
@@ -35,59 +38,52 @@ public class JunctionService {
 
     }
 
-    public void toJson(Junction junction) {
-        try (BufferedWriter file = new BufferedWriter(new FileWriter("/Users/yaz/Test/src/main//resources/forms.json", true))) {
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            String json = gson.toJson(junction);
-            System.out.println(json);
 
-            ObjectMapper mapper = new ObjectMapper();
-            ObjectWriter writer = mapper.writerWithDefaultPrettyPrinter();
 
-            writer.writeValue(file, junction);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+    public Junction create(Junction junction) {
 
-    public Junction save(Junction junction) {
-        try (BufferedWriter file = new BufferedWriter(new FileWriter("/Users/yaz/Test/src/main//resources/forms.json", true))) {
-            ObjectMapper mapper = new ObjectMapper();
-            ObjectWriter writer = mapper.writerWithDefaultPrettyPrinter();
+          junction.setId(UUID.randomUUID().toString());
+        List<Junction> currentAllJunctions = findAll();
+        currentAllJunctions.add(junction);
 
-            if (junction.getId() == -1 || junction.getId() == 0) {
-                junction.setId(++idCounter);
-                writer.writeValue(file, junction);
-                junctions.add(junction);
-            } else {
-                deleteById(junction.getId());
-                junctions.add(junction);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        saveToDisk(currentAllJunctions);
 
         return junction;
     }
 
-    public Junction deleteById(long id) {
-        Junction junction = findById(id);
+    private void saveToDisk(List<Junction> currentAllJunctions) {
+        Gson gson = new Gson();
 
-        if(junction == null) return null;
+        // create a writer
+        Writer writer = null;
+        try {
+            writer = Files.newBufferedWriter(Paths.get("c:\\/Users/yaz/Test/src/main//resources/forms.json"));
+            // convert user object to JSON file
+            gson.toJson(currentAllJunctions, writer);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-        junctions.remove(junction);
+    public void deleteById(String id) {
+        List<Junction> all = findAll();
 
+        List<Junction> collect = all.stream().filter(junction -> !junction.getId().equals(id)).collect(Collectors.toList());
+        saveToDisk(collect);
+    }
+
+    public Junction findById(String id) {
+        List<Junction> junctions = findAll();
+        Optional<Junction> first = junctions.stream().filter(junction -> junction.getId().equals(id)).findFirst();
+        return first.orElse(null);
+    }
+
+
+    public Junction update(Junction junction) {
+        List<Junction> junctions = findAll();
+        List<Junction> updatedList = junctions.stream().map(oldValue -> oldValue.getId().equals(junction.getId()) ? junction : oldValue).collect(Collectors.toList());
+        saveToDisk(updatedList);
         return junction;
     }
-
-    public Junction findById(long id) {
-        for(Junction junction : junctions) {
-            if(junction.getId() == id) {
-                return junction;
-            }
-        }
-        return null;
-    }
-
 }
