@@ -1,0 +1,75 @@
+[
+  {
+    "id": 1,
+    "host": "Hostinger",
+    "context": "",
+    "ordning": "ATP UDK",
+    "server": null,
+    "datoPilo": "2020-02-24",
+    "datoProd": "2020-02-24"
+  },
+  {
+    "id": 2,
+    "host": "Hostinger",
+    "context": "",
+    "ordning": "ATP UDK",
+    "server": "XFE",
+    "datoPilo": "2020-02-24",
+    "datoProd": "2020-02-24"
+  },
+  {
+    "id": 3,
+    "host": "DreamHost",
+    "context": "",
+    "ordning": "Feriepenge",
+    "server": "Liberty Server",
+    "datoPilo": "2020-02-24",
+    "datoProd": "2020-02-24"
+  },
+  {
+    "id": 4,
+    "host": "A2Hosting",
+    "context": "",
+    "ordning": "Folkespension",
+    "server": "LDAP2",
+    "datoPilo": "2020-02-24",
+    "datoProd": "2020-02-24"
+  },
+  {
+    "id": 5,
+    "host": "Hostinger",
+    "context": "",
+    "ordning": "ATP UDK",
+    "server": "XFE",
+    "datoPilo": "2020-02-24",
+    "datoProd": "2020-02-24"
+  },
+  {
+    "id": 6,
+    "host": "Hostinger",
+    "context": "\"",
+    "ordning": "ATP UDK",
+    "server": "XFE",
+    "datoPilo": "2020-02-24",
+    "datoProd": "2020-02-24"
+  },
+  {
+    "id": 7,
+    "host": "Privat",
+    "context": "lll",
+    "ordning": "ATP UDK",
+    "server": "XFE",
+    "datoPilo": "2020-02-08",
+    "datoProd": "2020-02-15"
+  },
+  {
+    "id" : 8,
+    "userCreated" : "",
+    "host" : null,
+    "context" : "",
+    "ordning" : null,
+    "server" : null,
+    "datoPilo" : "2020-03-06",
+    "datoProd" : "2020-03-06"
+  }
+]

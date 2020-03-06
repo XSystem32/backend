@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Date;
 import java.util.Objects;
 
-public class Form {
+public class Junction {
 
     private long id;
     private Date creationDate;
@@ -21,11 +21,11 @@ public class Form {
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date datoProd;
 
-    protected Form() {
+    protected Junction() {
 
     }
 
-    public Form(long id, Date creationDate, String userCreated, String host, String context, String ordning, String server, Date datoPilo, Date datoProd) {
+    public Junction(long id, Date creationDate, String userCreated, String host, String context, String ordning, String server, Date datoPilo, Date datoProd) {
         this.id = id;
         this.creationDate = creationDate;
         this.userCreated = userCreated;
@@ -112,9 +112,9 @@ public class Form {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Form)) return false;
-        Form form = (Form) o;
-        return getId() == form.getId();
+        if (!(o instanceof Junction)) return false;
+        Junction junction = (Junction) o;
+        return getId() == junction.getId();
     }
 
     @Override
