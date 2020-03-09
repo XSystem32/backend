@@ -99,22 +99,11 @@
     "datoProd": "Mar 26, 2020 1:00:00 AM"
   },
   {
-    "id": "4b0a4402-3ba7-48f8-9ea7-5bf160f2d78f",
-    "creationDate": "Mar 9, 2020 3:52:40 PM",
-    "userCreated": "Samuel",
+    "id": "6e72b1ee-1ae5-4032-ac89-2dc675991f30",
+    "creationDate": "Mar 9, 2020 4:00:36 PM",
+    "userCreated": "Hanne",
     "host": "Offentlig",
-    "context": "/lep",
-    "ordning": "Folkespension",
-    "server": "ISAM",
-    "datoPilo": "Mar 9, 2020 1:00:00 AM",
-    "datoProd": "Mar 9, 2020 1:00:00 AM"
-  },
-  {
-    "id": "10789cb4-ff57-44f6-a031-3fa5c5014870",
-    "creationDate": "Mar 9, 2020 3:55:16 PM",
-    "userCreated": "Paul",
-    "host": "Erhverv",
-    "context": "",
+    "context": "/ddd",
     "ordning": "Folkespension",
     "server": "ISAM",
     "datoPilo": "Mar 9, 2020 1:00:00 AM",

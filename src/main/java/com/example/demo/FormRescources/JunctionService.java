@@ -77,24 +77,18 @@ public class JunctionService {
     public void addToGit() {
         System.out.println("Start af addToGit");
         try (Git git = Git.open(new File("c:\\/Users/yaz/Test"))) {
-
-            Properties prop = readPropertiesFile("c:\\/Users/yaz/Test/src/main//resources/gitinfo.properties");
-
-            System.out.println(prop.getProperty("username"));
-            System.out.println(prop.getProperty("password"));
-
-            // add remote repo:
             RemoteAddCommand remoteAddCommand = git.remoteAdd();
-
-            git.add().addFilepattern(".").call();
-
             remoteAddCommand.setName("origin");
             remoteAddCommand.setUri(new URIish("https://github.com/XSystem32/backend.git"));
-            remoteAddCommand.call();
-            git.commit().setMessage("Test").call();
-            // push to remote:
             PushCommand pushCommand = git.push();
+
+
+            Properties prop = readPropertiesFile("c:\\/Users/yaz/Test/src/main//resources/gitinfo.properties");
             pushCommand.setCredentialsProvider(new UsernamePasswordCredentialsProvider(prop.getProperty("username"), prop.getProperty("password")));
+
+            git.add().addFilepattern(".").call();
+            git.commit().setMessage("Test").call();
+            remoteAddCommand.call();
             pushCommand.call();
         } catch (URISyntaxException | GitAPIException | IOException e) {
             e.printStackTrace();
