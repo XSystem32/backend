@@ -91,7 +91,7 @@ public class JunctionService {
             git.commit().setMessage("Test").call();
             // push to remote:
             PushCommand pushCommand = git.push();
-            pushCommand.setCredentialsProvider(new UsernamePasswordCredentialsProvider(prop.getProperty("git.username"), prop.getProperty("git.password")));
+            pushCommand.setCredentialsProvider(new UsernamePasswordCredentialsProvider(prop.getProperty("username"), prop.getProperty("password")));
             pushCommand.call();
         } catch (URISyntaxException | GitAPIException | IOException e) {
             e.printStackTrace();
