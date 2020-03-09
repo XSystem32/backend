@@ -5,10 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.PushCommand;
 import org.eclipse.jgit.api.RemoteAddCommand;
-import org.eclipse.jgit.api.errors.GitAPIException;
-import org.eclipse.jgit.api.errors.InvalidRemoteException;
-import org.eclipse.jgit.api.errors.NoFilepatternException;
-import org.eclipse.jgit.api.errors.TransportException;
+import org.eclipse.jgit.api.errors.*;
 import org.eclipse.jgit.internal.storage.file.FileRepository;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.transport.URIish;
@@ -77,17 +74,11 @@ public class JunctionService {
         return first.orElse(null);
     }
 
-
-    public Junction update(Junction junction) {
-        List<Junction> junctions = findAll();
-        List<Junction> updatedList = junctions.stream().map(oldValue -> oldValue.getId().equals(junction.getId()) ? junction : oldValue).collect(Collectors.toList());
-        saveToDisk(updatedList);
-        return junction;
-    }
-
     public void addToGit() {
         System.out.println("Start af addToGit");
         try (Git git = Git.open(new File("c:\\/Users/yaz/Test"))) {
+
+            Properties prop = readPropertiesFile("c:\\/Users/yaz/Test/src/main//resources/gitinfo.properties");
 
             // add remote repo:
             RemoteAddCommand remoteAddCommand = git.remoteAdd();
@@ -100,14 +91,28 @@ public class JunctionService {
             git.commit().setMessage("Test").call();
             // push to remote:
             PushCommand pushCommand = git.push();
-            pushCommand.setCredentialsProvider(new UsernamePasswordCredentialsProvider("XSystem32", "uvq53egf"));
+            pushCommand.setCredentialsProvider(new UsernamePasswordCredentialsProvider(prop.getProperty("git.username"), prop.getProperty("git.password")));
             pushCommand.call();
-        } catch (Throwable e) {
+        } catch (URISyntaxException | GitAPIException | IOException e) {
             e.printStackTrace();
         }
         System.out.println("End af addToGit");
+    }
 
-
+    public static Properties readPropertiesFile(String fileName) throws IOException {
+        FileInputStream fis = null;
+        Properties prop = null;
+        try {
+            fis = new FileInputStream(fileName);
+            prop = new Properties();
+            prop.load(fis);
+        } catch(IOException fnfe) {
+            fnfe.printStackTrace();
+        } finally {
+            assert fis != null;
+            fis.close();
+        }
+        return prop;
     }
 
 }
