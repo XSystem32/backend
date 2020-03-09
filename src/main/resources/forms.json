@@ -88,25 +88,14 @@
     "datoProd": "Mar 9, 2020 1:00:00 AM"
   },
   {
-    "id": "dc53e998-5322-4740-ad47-f2d7b985c312",
-    "creationDate": "Mar 9, 2020 2:06:53 PM",
-    "userCreated": "Jonas",
-    "host": "Offentlig",
-    "context": "/pelle",
-    "ordning": "ATP Investering",
-    "server": "XFE",
-    "datoPilo": "Apr 5, 2020 2:00:00 AM",
-    "datoProd": "Apr 5, 2020 2:00:00 AM"
-  },
-  {
-    "id": "4a640dfe-c927-4e48-8b3e-0d09618f7932",
-    "creationDate": "Mar 9, 2020 2:07:45 PM",
-    "userCreated": "Lars",
-    "host": "Privat",
-    "context": "/lars",
+    "id": "65bf65ce-a188-4fb0-b3d2-0192c8c6958f",
+    "creationDate": "Mar 9, 2020 2:15:50 PM",
+    "userCreated": "Kim",
+    "host": "Erhverv",
+    "context": "/kim",
     "ordning": "AES",
     "server": "LDAP",
-    "datoPilo": "Mar 9, 2020 1:00:00 AM",
-    "datoProd": "Mar 9, 2020 1:00:00 AM"
+    "datoPilo": "Mar 11, 2020 1:00:00 AM",
+    "datoProd": "Mar 25, 2020 1:00:00 AM"
   }
 ]
