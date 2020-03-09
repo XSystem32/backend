@@ -1,18 +1,9 @@
 package com.example.demo.FormRescources;
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectReader;
-import com.fasterxml.jackson.databind.ObjectWriter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.reflect.TypeToken;
 import org.springframework.stereotype.Service;
 import java.io.*;
-import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
@@ -30,19 +21,16 @@ public class JunctionService {
             is = new FileInputStream("c:\\/Users/yaz/Test/src/main//resources/forms.json");
             Reader r = new InputStreamReader(is, "UTF-8");
             Gson gson = new GsonBuilder().create();
-            List <Junction> localJunctions = gson.fromJson(r, new TypeToken<List<Junction>>() {}.getType());
-            return localJunctions;
+            return gson.fromJson(r, new TypeToken<List<Junction>>() {}.getType());
         } catch (FileNotFoundException | UnsupportedEncodingException e) {
           return new ArrayList();
         }
 
     }
 
-
-
     public Junction create(Junction junction) {
 
-          junction.setId(UUID.randomUUID().toString());
+        junction.setId(UUID.randomUUID().toString());
         List<Junction> currentAllJunctions = findAll();
         currentAllJunctions.add(junction);
 
@@ -52,13 +40,11 @@ public class JunctionService {
     }
 
     private void saveToDisk(List<Junction> currentAllJunctions) {
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-        // create a writer
         Writer writer = null;
         try {
             writer = Files.newBufferedWriter(Paths.get("c:\\/Users/yaz/Test/src/main//resources/forms.json"));
-            // convert user object to JSON file
             gson.toJson(currentAllJunctions, writer);
             writer.close();
         } catch (IOException e) {

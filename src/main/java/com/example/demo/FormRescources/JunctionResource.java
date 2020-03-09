@@ -17,7 +17,7 @@ public class JunctionResource {
     private JunctionService junctionService;
 
     @GetMapping("/junctions")
-    public List<Junction> getAllJunctions() throws IOException {
+    public List<Junction> getAllJunctions() {
         return junctionService.findAll();
     }
 
@@ -39,15 +39,6 @@ public class JunctionResource {
     @PostMapping("/junctions/{id}")
     public Junction updateJunction(@PathVariable String id, @RequestBody Junction junction) {
         return junctionService.update(junction);
-
-    }
-
-
-    @PostMapping("/junctions")
-    public ResponseEntity<Void> updateForm(@RequestBody Junction junction) {
-        Junction createdJunction = junctionService.create(junction);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(createdJunction.getId()).toUri();
-        return ResponseEntity.created(uri).build();
     }
 
 }

@@ -1,71 +1,57 @@
 [
   {
-    "id": "1",
-    "host": "Hostinger",
-    "context": "",
-    "ordning": "ATP UDK",
-    "datoPilo": "Feb 24, 2020 12:00:00 AM",
-    "datoProd": "Feb 24, 2020 12:00:00 AM"
-  },
-  {
-    "id": "2",
-    "host": "Hostinger",
-    "context": "",
-    "ordning": "ATP UDK",
+    "id": "7701b111-aa33-4f4e-b66f-12716ca5ff53",
+    "creationDate": "Mar 6, 2020 2:50:10 PM",
+    "userCreated": "Jon",
+    "host": "Offentlig",
+    "context": "/leo",
+    "ordning": "Folkespension",
     "server": "XFE",
-    "datoPilo": "Feb 24, 2020 12:00:00 AM",
-    "datoProd": "Feb 24, 2020 12:00:00 AM"
+    "datoPilo": "Mar 13, 2020 1:00:00 AM",
+    "datoProd": "Mar 13, 2020 1:00:00 AM"
   },
   {
-    "id": "3",
-    "host": "DreamHost",
-    "context": "",
+    "id": "3e42db03-9476-4b95-ad3c-39b036fb47b5",
+    "creationDate": "Mar 6, 2020 2:53:56 PM",
+    "userCreated": "Lars",
+    "host": "Intern",
+    "context": "/uva",
+    "ordning": "Feriepenge",
+    "server": "ISAM",
+    "datoPilo": "Mar 6, 2020 1:00:00 AM",
+    "datoProd": "Mar 6, 2020 1:00:00 AM"
+  },
+  {
+    "id": "3e053c48-9256-430b-bc78-cffcf1c570f5",
+    "creationDate": "Mar 6, 2020 2:58:05 PM",
+    "userCreated": "Jette",
+    "host": "Offentlig",
+    "context": "/hess",
+    "ordning": "Feriepenge",
+    "server": "XFE",
+    "datoPilo": "Mar 26, 2020 1:00:00 AM",
+    "datoProd": "Apr 4, 2020 2:00:00 AM"
+  },
+  {
+    "id": "3398c343-dc8a-4f48-b395-9a802817bb76",
+    "creationDate": "Mar 9, 2020 9:25:06 AM",
+    "userCreated": "Helle",
+    "host": "Offentlig",
+    "context": "/jao",
     "ordning": "Feriepenge",
     "server": "Liberty Server",
-    "datoPilo": "Feb 24, 2020 12:00:00 AM",
-    "datoProd": "Feb 24, 2020 12:00:00 AM"
+    "datoPilo": "Mar 12, 2020 1:00:00 AM",
+    "datoProd": "Mar 27, 2020 1:00:00 AM"
   },
   {
-    "id": "4",
-    "host": "A2Hosting",
-    "context": "",
-    "ordning": "Folkespension",
-    "server": "LDAP2",
-    "datoPilo": "Feb 24, 2020 12:00:00 AM",
-    "datoProd": "Feb 24, 2020 12:00:00 AM"
-  },
-  {
-    "id": "5",
-    "host": "Hostinger",
-    "context": "",
-    "ordning": "ATP UDK",
-    "server": "XFE",
-    "datoPilo": "Feb 24, 2020 12:00:00 AM",
-    "datoProd": "Feb 24, 2020 12:00:00 AM"
-  },
-  {
-    "id": "6",
-    "host": "Hostinger",
-    "context": "\"",
-    "ordning": "ATP UDK",
-    "server": "XFE",
-    "datoPilo": "Feb 24, 2020 12:00:00 AM",
-    "datoProd": "Feb 24, 2020 12:00:00 AM"
-  },
-  {
-    "id": "7",
+    "id": "4b7797c4-f277-4629-99d0-f58015a1ca3f",
+    "creationDate": "Mar 9, 2020 10:03:23 AM",
+    "userCreated": "Logen",
     "host": "Privat",
-    "context": "lll",
-    "ordning": "ATP UDK",
-    "server": "XFE",
-    "datoPilo": "Feb 8, 2020 12:00:00 AM",
-    "datoProd": "Feb 15, 2020 12:00:00 AM"
-  },
-  {
-    "id": "8",
-    "userCreated": "",
-    "context": "",
-    "datoPilo": "Mar 6, 2020 12:00:00 AM",
-    "datoProd": "Mar 6, 2020 12:00:00 AM"
+    "context": "/hue",
+    "ordning": "Feriepenge",
+    "server": "Liberty Server",
+    "datoPilo": "Apr 3, 2020 2:00:00 AM",
+    "datoProd": "Mar 25, 2020 1:00:00 AM"
   }
 ]
