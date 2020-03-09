@@ -84,7 +84,7 @@ public class JunctionService {
 
 
             Properties prop = readPropertiesFile("c:\\/Users/yaz/Test/src/main//resources/gitinfo.properties");
-            pushCommand.setCredentialsProvider(new UsernamePasswordCredentialsProvider("XSystem32", "uvq53egf"));
+            pushCommand.setCredentialsProvider(new UsernamePasswordCredentialsProvider(prop.getProperty("username").toString(), prop.getProperty("password").toString()));
 
             git.add().addFilepattern(".").call();
             git.commit().setMessage("Test").call();
