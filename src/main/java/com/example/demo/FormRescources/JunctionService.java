@@ -80,6 +80,9 @@ public class JunctionService {
 
             Properties prop = readPropertiesFile("c:\\/Users/yaz/Test/src/main//resources/gitinfo.properties");
 
+            System.out.println(prop.getProperty("username"));
+            System.out.println(prop.getProperty("password"));
+
             // add remote repo:
             RemoteAddCommand remoteAddCommand = git.remoteAdd();
 
