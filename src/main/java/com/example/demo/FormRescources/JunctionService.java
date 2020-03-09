@@ -44,7 +44,7 @@ public class JunctionService {
         currentAllJunctions.add(junction);
 
         saveToDisk(currentAllJunctions);
-        addToGit();
+        addToGit(junction.getUserCreated() + " har oprettet " + junction.getContext() + " til " + junction.getHost());
         return junction;
     }
 
@@ -74,9 +74,14 @@ public class JunctionService {
         return first.orElse(null);
     }
 
-    public void addToGit() {
+    public void addToGit(String message) throws IOException {
         System.out.println("Start af addToGit");
-        try (Git git = Git.open(new File("c:\\/Users/yaz/Test"))) {
+
+        //Initialize property file
+        Properties prop = readPropertiesFile("c:\\/Users/yaz/Test/src/main/resources/gitinfo.properties");
+
+        try (Git git = Git.open(new File(prop.getProperty("localrepo")))) {
+
             //To add remote repository
             RemoteAddCommand remoteAddCommand = git.remoteAdd();
 
@@ -84,25 +89,20 @@ public class JunctionService {
             remoteAddCommand.setName("origin");
 
             //Giving the url of the repo
-            remoteAddCommand.setUri(new URIish("https://github.com/XSystem32/backend.git"));
+            remoteAddCommand.setUri(new URIish(prop.getProperty("remoterepo")));
 
             //Initializing the git push method
             PushCommand pushCommand = git.push();
 
-            Properties prop = readPropertiesFile("c:\\/Users/yaz/Test/src/main//resources/gitinfo.properties");
-
             String username = prop.getProperty("username");
             String password = prop.getProperty("password");
-
-            System.out.println(username);
-            System.out.println(password);
 
             //User and password of you github
             pushCommand.setCredentialsProvider(new UsernamePasswordCredentialsProvider(username,password));
 
             //Call "git add .", "git commit "message" ", "git remote add origin" and "git push" respectively
             git.add().addFilepattern(".").call();
-            git.commit().setMessage("Test").call();
+            git.commit().setMessage(message).call();
             remoteAddCommand.call();
             pushCommand.call();
         } catch (URISyntaxException | GitAPIException | IOException e) {
