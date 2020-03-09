@@ -94,8 +94,11 @@ public class JunctionService {
             String username = prop.getProperty("username");
             String password = prop.getProperty("password");
 
+            System.out.println(username);
+            System.out.println(password);
+
             //User and password of you github
-            pushCommand.setCredentialsProvider(new UsernamePasswordCredentialsProvider(String.valueOf(username),String.valueOf(password)));
+            pushCommand.setCredentialsProvider(new UsernamePasswordCredentialsProvider(username,password));
 
             //Call "git add .", "git commit "message" ", "git remote add origin" and "git push" respectively
             git.add().addFilepattern(".").call();
