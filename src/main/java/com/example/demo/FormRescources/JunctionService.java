@@ -2,8 +2,20 @@ package com.example.demo.FormRescources;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.api.PushCommand;
+import org.eclipse.jgit.api.RemoteAddCommand;
+import org.eclipse.jgit.api.errors.GitAPIException;
+import org.eclipse.jgit.api.errors.InvalidRemoteException;
+import org.eclipse.jgit.api.errors.NoFilepatternException;
+import org.eclipse.jgit.api.errors.TransportException;
+import org.eclipse.jgit.internal.storage.file.FileRepository;
+import org.eclipse.jgit.lib.Repository;
+import org.eclipse.jgit.transport.URIish;
+import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 import org.springframework.stereotype.Service;
 import java.io.*;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
@@ -28,14 +40,14 @@ public class JunctionService {
 
     }
 
-    public Junction create(Junction junction) {
+    public Junction create(Junction junction) throws IOException, GitAPIException, URISyntaxException {
 
         junction.setId(UUID.randomUUID().toString());
         List<Junction> currentAllJunctions = findAll();
         currentAllJunctions.add(junction);
 
         saveToDisk(currentAllJunctions);
-
+        addToGit();
         return junction;
     }
 
@@ -72,4 +84,31 @@ public class JunctionService {
         saveToDisk(updatedList);
         return junction;
     }
+
+    public void addToGit() {
+        System.out.println("Start af addToGit");
+        try (Git git = Git.open(new File("c:\\/Users/yaz/Test"))) {
+
+            // add remote repo:
+            RemoteAddCommand remoteAddCommand = git.remoteAdd();
+
+            git.add().addFilepattern(".").call();
+
+            remoteAddCommand.setName("origin");
+            remoteAddCommand.setUri(new URIish("https://github.com/XSystem32/backend.git"));
+            remoteAddCommand.call();
+            git.commit().setMessage("blabla");
+
+            // push to remote:
+            PushCommand pushCommand = git.push();
+            pushCommand.setCredentialsProvider(new UsernamePasswordCredentialsProvider("XSystem32", "uvq53egf"));
+            pushCommand.call();
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+        System.out.println("End af addToGit");
+
+
+    }
+
 }

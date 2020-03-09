@@ -1,5 +1,6 @@
 package com.example.demo.FormRescources;
 
+import org.eclipse.jgit.api.errors.GitAPIException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -7,11 +8,15 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.io.*;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
+import java.util.logging.Logger;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class JunctionResource {
+
+    private static final Logger LOGGER = Logger.getLogger(JunctionResource.class.getName());
 
     @Autowired
     private JunctionService junctionService;
@@ -31,12 +36,13 @@ public class JunctionResource {
         junctionService.deleteById(id);
     }
 
-    @PutMapping("/junctions")
-    public Junction createJunction( @RequestBody Junction junction) {
+    @PutMapping("/junctions/create")
+    public Junction createJunction(@RequestBody Junction junction) throws IOException, GitAPIException, URISyntaxException {
+        LOGGER.info("");
         return junctionService.create(junction);
     }
 
-    @PostMapping("/junctions/{id}")
+    @PostMapping("/junctions/update/{id}")
     public Junction updateJunction(@PathVariable String id, @RequestBody Junction junction) {
         return junctionService.update(junction);
     }
