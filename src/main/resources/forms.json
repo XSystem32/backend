@@ -110,10 +110,13 @@
     "datoProd": "Mar 9, 2020 1:00:00 AM"
   },
   {
-    "id": "f9cf653e-85fb-42e7-aee9-8487ae643e88",
-    "creationDate": "Mar 9, 2020 4:26:58 PM",
-    "userCreated": "",
+    "id": "3fc549a3-4992-47c1-a48d-9e2a2c4c61ae",
+    "creationDate": "Mar 9, 2020 4:35:32 PM",
+    "userCreated": "Victor",
+    "host": "Erhverv",
     "context": "",
+    "ordning": "Folkespension",
+    "server": "ISAM",
     "datoPilo": "Mar 9, 2020 1:00:00 AM",
     "datoProd": "Mar 9, 2020 1:00:00 AM"
   }
