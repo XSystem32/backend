@@ -97,8 +97,7 @@ public class JunctionService {
             remoteAddCommand.setName("origin");
             remoteAddCommand.setUri(new URIish("https://github.com/XSystem32/backend.git"));
             remoteAddCommand.call();
-            git.commit().setMessage("blabla");
-
+            git.commit().setMessage("Test").call();
             // push to remote:
             PushCommand pushCommand = git.push();
             pushCommand.setCredentialsProvider(new UsernamePasswordCredentialsProvider("XSystem32", "uvq53egf"));
