@@ -77,15 +77,27 @@ public class JunctionService {
     public void addToGit() {
         System.out.println("Start af addToGit");
         try (Git git = Git.open(new File("c:\\/Users/yaz/Test"))) {
+            //To add remote repository
             RemoteAddCommand remoteAddCommand = git.remoteAdd();
+
+            //Set a name for repo
             remoteAddCommand.setName("origin");
+
+            //Giving the url of the repo
             remoteAddCommand.setUri(new URIish("https://github.com/XSystem32/backend.git"));
+
+            //Initializing the git push method
             PushCommand pushCommand = git.push();
 
-
             Properties prop = readPropertiesFile("c:\\/Users/yaz/Test/src/main//resources/gitinfo.properties");
-            pushCommand.setCredentialsProvider(new UsernamePasswordCredentialsProvider(prop.getProperty("username").toString(), prop.getProperty("password").toString()));
 
+            String username = prop.getProperty("username");
+            String password = prop.getProperty("password");
+
+            //User and password of you github
+            pushCommand.setCredentialsProvider(new UsernamePasswordCredentialsProvider(username, password));
+
+            //Call "git add .", "git commit "message" ", "git remote add origin" and "git push" respectively
             git.add().addFilepattern(".").call();
             git.commit().setMessage("Test").call();
             remoteAddCommand.call();
