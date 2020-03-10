@@ -90,6 +90,7 @@ public class JunctionService {
             //Giving the url of the repo
             remoteAddCommand.setUri(new URIish(prop.getProperty("remoterepo")));
 
+            System.out.println(prop.getProperty("remoterepo"));
             //Initializing the git push method
             PushCommand pushCommand = git.push();
 
