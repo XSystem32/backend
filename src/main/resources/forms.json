@@ -119,5 +119,16 @@
     "server": "ISAM",
     "datoPilo": "Mar 18, 2020 1:00:00 AM",
     "datoProd": "Mar 24, 2020 1:00:00 AM"
+  },
+  {
+    "id": "daa77055-cc98-4437-8b4e-723ae7c47c71",
+    "creationDate": "Mar 10, 2020 8:21:36 AM",
+    "userCreated": "Sanne",
+    "host": "Offentlig",
+    "context": "/nnaa",
+    "ordning": "ATP UDK",
+    "server": "ISAM",
+    "datoPilo": "Mar 10, 2020 1:00:00 AM",
+    "datoProd": "Mar 10, 2020 1:00:00 AM"
   }
 ]
