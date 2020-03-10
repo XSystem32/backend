@@ -108,16 +108,5 @@
     "server": "ISAM",
     "datoPilo": "Mar 9, 2020 1:00:00 AM",
     "datoProd": "Mar 9, 2020 1:00:00 AM"
-  },
-  {
-    "id": "54c6b89f-5db6-46e6-8f8c-931f8833f5a1",
-    "creationDate": "Mar 10, 2020 8:05:10 AM",
-    "userCreated": "Nikolaj",
-    "host": "Offentlig",
-    "context": "/goss",
-    "ordning": "Folkespension",
-    "server": "ISAM",
-    "datoPilo": "Mar 10, 2020 1:00:00 AM",
-    "datoProd": "Mar 10, 2020 1:00:00 AM"
   }
 ]

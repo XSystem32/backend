@@ -64,9 +64,9 @@ public class JunctionService {
 
     public void deleteById(String id) throws IOException {
         List<Junction> all = findAll();
-
         List<Junction> collect = all.stream().filter(junction -> !junction.getId().equals(id)).collect(Collectors.toList());
         saveToDisk(collect);
+        addToGit("Deleted the junction");
     }
 
     public Junction findById(String id) throws IOException {
@@ -140,7 +140,6 @@ public class JunctionService {
         } catch (GitAPIException e) {
             e.printStackTrace();
         }
-        // clean up here to not keep using more and more disk-space for these samples
     }
 
     private static Repository cloneRepository() throws IOException, GitAPIException {
