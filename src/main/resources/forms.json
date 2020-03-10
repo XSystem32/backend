@@ -130,16 +130,5 @@
     "server": "ISAM",
     "datoPilo": "Mar 10, 2020 1:00:00 AM",
     "datoProd": "Mar 10, 2020 1:00:00 AM"
-  },
-  {
-    "id": "128d724b-6a89-452f-ae55-9ab65662b606",
-    "creationDate": "Mar 10, 2020 8:22:56 AM",
-    "userCreated": "Darren",
-    "host": "Offentlig",
-    "context": "",
-    "ordning": "Feriepenge",
-    "server": "Liberty Server",
-    "datoPilo": "Mar 17, 2020 1:00:00 AM",
-    "datoProd": "Mar 24, 2020 1:00:00 AM"
   }
 ]

@@ -27,7 +27,7 @@ public class JunctionService {
     public List<Junction> findAll() throws IOException {
         InputStream is = null;
         try {
-            //pullFromGit();
+            pullFromGit();
             is = new FileInputStream("c:\\/Users/yaz/Test/src/main//resources/forms.json");
             Reader r = new InputStreamReader(is, "UTF-8");
             Gson gson = new GsonBuilder().create();
