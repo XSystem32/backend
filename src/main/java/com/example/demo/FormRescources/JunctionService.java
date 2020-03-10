@@ -144,7 +144,7 @@ public class JunctionService {
     private static Repository cloneRepository() throws IOException, GitAPIException {
         // prepare a new folder for the cloned repository
         Properties prop = readPropertiesFile("c:\\/Users/yaz/Test/src/main/resources/gitinfo.properties");
-        File localPath = File.createTempFile("TestGitRepository", "");
+        File localPath = File.createTempFile("TestGitRepository", "", new File("c:\\/Users/yaz/Test/src/main/resources"));
         if(!localPath.delete()) {
             throw new IOException("Could not delete temporary file " + localPath);
         }
