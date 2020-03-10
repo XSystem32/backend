@@ -108,16 +108,5 @@
     "server": "ISAM",
     "datoPilo": "Mar 9, 2020 1:00:00 AM",
     "datoProd": "Mar 9, 2020 1:00:00 AM"
-  },
-  {
-    "id": "d7d48acd-878b-4e21-9e70-219711b05b20",
-    "creationDate": "Mar 10, 2020 11:59:14 AM",
-    "userCreated": "John",
-    "host": "Erhverv",
-    "context": "/ddd",
-    "ordning": "Folkespension",
-    "server": "LDAP 2",
-    "datoPilo": "Mar 1, 2020 1:00:00 AM",
-    "datoProd": "Mar 27, 2020 1:00:00 AM"
   }
 ]

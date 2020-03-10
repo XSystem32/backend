@@ -4,6 +4,7 @@ target/
 !**/src/main/**
 !**/src/test/**
 /src/main/resources/gitinfo.properties
+package-lock.json
 
 ### STS ###
 .apt_generated
