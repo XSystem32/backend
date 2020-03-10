@@ -2,11 +2,11 @@ package com.example.demo.FormRescources;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import org.eclipse.jgit.api.Git;
-import org.eclipse.jgit.api.PushCommand;
-import org.eclipse.jgit.api.RemoteAddCommand;
+import org.apache.tomcat.util.http.fileupload.FileUtils;
+import org.eclipse.jgit.api.*;
 import org.eclipse.jgit.api.errors.*;
 import org.eclipse.jgit.internal.storage.file.FileRepository;
+import org.eclipse.jgit.lib.Constants;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.transport.URIish;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
@@ -24,9 +24,10 @@ public class JunctionService {
 
 
 
-    public List<Junction> findAll() {
+    public List<Junction> findAll() throws IOException {
         InputStream is = null;
         try {
+            pullFromGit();
             is = new FileInputStream("c:\\/Users/yaz/Test/src/main//resources/forms.json");
             Reader r = new InputStreamReader(is, "UTF-8");
             Gson gson = new GsonBuilder().create();
@@ -44,7 +45,7 @@ public class JunctionService {
         currentAllJunctions.add(junction);
 
         saveToDisk(currentAllJunctions);
-        addToGit(junction.getUserCreated() + " har oprettet " + junction.getContext() + " til " + junction.getHost());
+        addToGit(junction.getUserCreated() + " har oprettet junction " + junction.getContext() + " til " + junction.getHost());
         return junction;
     }
 
@@ -61,14 +62,14 @@ public class JunctionService {
         }
     }
 
-    public void deleteById(String id) {
+    public void deleteById(String id) throws IOException {
         List<Junction> all = findAll();
 
         List<Junction> collect = all.stream().filter(junction -> !junction.getId().equals(id)).collect(Collectors.toList());
         saveToDisk(collect);
     }
 
-    public Junction findById(String id) {
+    public Junction findById(String id) throws IOException {
         List<Junction> junctions = findAll();
         Optional<Junction> first = junctions.stream().filter(junction -> junction.getId().equals(id)).findFirst();
         return first.orElse(null);
@@ -125,6 +126,40 @@ public class JunctionService {
             fis.close();
         }
         return prop;
+    }
+
+    public void pullFromGit() throws IOException {
+
+        try (Repository repository = cloneRepository()) {
+
+            try (Git git = new Git(repository)) {
+                PullResult call = git.pull().call();
+
+                System.out.println("Pulled from the remote repository: " + call);
+            }
+        } catch (GitAPIException e) {
+            e.printStackTrace();
+        }
+        // clean up here to not keep using more and more disk-space for these samples
+    }
+
+    private static Repository cloneRepository() throws IOException, GitAPIException {
+        // prepare a new folder for the cloned repository
+        Properties prop = readPropertiesFile("c:\\/Users/yaz/Test/src/main/resources/gitinfo.properties");
+        File localPath = File.createTempFile("TestGitRepository", "");
+        if(!localPath.delete()) {
+            throw new IOException("Could not delete temporary file " + localPath);
+        }
+
+        // then clone
+        System.out.println("Cloning from " + prop.getProperty("remoterepo") + " to " + localPath);
+        try (Git result = Git.cloneRepository()
+                .setURI(prop.getProperty("remoterepo"))
+                .setDirectory(localPath)
+                .call()) {
+            // Note: the call() returns an opened repository already which needs to be closed to avoid file handle leaks!
+            return result.getRepository();
+        }
     }
 
 }

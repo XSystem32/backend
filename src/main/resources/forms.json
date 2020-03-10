@@ -110,25 +110,14 @@
     "datoProd": "Mar 9, 2020 1:00:00 AM"
   },
   {
-    "id": "3fc549a3-4992-47c1-a48d-9e2a2c4c61ae",
-    "creationDate": "Mar 9, 2020 4:35:32 PM",
-    "userCreated": "Victor",
-    "host": "Erhverv",
-    "context": "",
+    "id": "54c6b89f-5db6-46e6-8f8c-931f8833f5a1",
+    "creationDate": "Mar 10, 2020 8:05:10 AM",
+    "userCreated": "Nikolaj",
+    "host": "Offentlig",
+    "context": "/goss",
     "ordning": "Folkespension",
     "server": "ISAM",
-    "datoPilo": "Mar 9, 2020 1:00:00 AM",
-    "datoProd": "Mar 9, 2020 1:00:00 AM"
-  },
-  {
-    "id": "f8bed337-5964-4932-b819-cb0871dabf4a",
-    "creationDate": "Mar 9, 2020 4:51:32 PM",
-    "userCreated": "karl",
-    "host": "Erhverv",
-    "context": "/soem",
-    "ordning": "Feriepenge",
-    "server": "ISAM",
-    "datoPilo": "Mar 9, 2020 1:00:00 AM",
-    "datoProd": "Mar 9, 2020 1:00:00 AM"
+    "datoPilo": "Mar 10, 2020 1:00:00 AM",
+    "datoProd": "Mar 10, 2020 1:00:00 AM"
   }
 ]
