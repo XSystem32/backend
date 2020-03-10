@@ -119,13 +119,5 @@
     "server": "LDAP 2",
     "datoPilo": "Mar 1, 2020 1:00:00 AM",
     "datoProd": "Mar 27, 2020 1:00:00 AM"
-  },
-  {
-    "id": "6fa9975e-19dc-4500-828d-2d7a4e5a114c",
-    "creationDate": "Mar 10, 2020 1:10:03 PM",
-    "userCreated": "",
-    "context": "",
-    "datoPilo": "Mar 10, 2020 1:00:00 AM",
-    "datoProd": "Mar 10, 2020 1:00:00 AM"
   }
 ]
