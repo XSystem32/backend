@@ -133,7 +133,7 @@ public class JunctionService {
             try (Git git = new Git(repository)) {
                 PullResult call = git.pull().call();
 
-                System.out.println("Pulled from the remote repository: " + call);
+                System.out.println("Pulled from the remote   repository: " + call   );
             }
         } catch (GitAPIException e) {
             e.printStackTrace();
