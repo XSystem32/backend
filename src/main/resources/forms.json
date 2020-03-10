@@ -119,16 +119,5 @@
     "server": "LDAP 2",
     "datoPilo": "Mar 1, 2020 1:00:00 AM",
     "datoProd": "Mar 27, 2020 1:00:00 AM"
-  },
-  {
-    "id": "1618d22f-95a5-417e-9872-69801d730978",
-    "creationDate": "Mar 10, 2020 12:32:00 PM",
-    "userCreated": "Harry",
-    "host": "Offentlig",
-    "context": "/sts",
-    "ordning": "ATP UDK",
-    "server": "LDAP",
-    "datoPilo": "Mar 26, 2020 1:00:00 AM",
-    "datoProd": "Mar 25, 2020 1:00:00 AM"
   }
 ]
