@@ -2,11 +2,8 @@ package com.example.demo.FormRescources;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.eclipse.jgit.api.*;
 import org.eclipse.jgit.api.errors.*;
-import org.eclipse.jgit.internal.storage.file.FileRepository;
-import org.eclipse.jgit.lib.Constants;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.transport.URIish;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
@@ -46,6 +43,7 @@ public class JunctionService {
 
         saveToDisk(currentAllJunctions);
         addToGit(junction.getUserCreated() + " har oprettet junction " + junction.getContext() + " til " + junction.getHost());
+        checkIfExists(junction);
         return junction;
     }
 
@@ -159,6 +157,10 @@ public class JunctionService {
             // Note: the call() returns an opened repository already which needs to be closed to avoid file handle leaks!
             return result.getRepository();
         }
+    }
+
+    public void checkIfExists(Junction junction) throws IOException {
+
     }
 
 }
