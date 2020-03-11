@@ -2,6 +2,7 @@ package com.example.demo.FormRescources;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.eclipse.jgit.api.*;
 import org.eclipse.jgit.api.errors.*;
 import org.eclipse.jgit.lib.Repository;
@@ -29,7 +30,7 @@ public class JunctionService {
             Reader r = new InputStreamReader(is, "UTF-8");
             Gson gson = new GsonBuilder().create();
             return gson.fromJson(r, new TypeToken<List<Junction>>() {}.getType());
-        } catch (FileNotFoundException | UnsupportedEncodingException e) {
+        } catch (FileNotFoundException | UnsupportedEncodingException | GitAPIException e) {
           return new ArrayList();
         }
 
@@ -127,8 +128,8 @@ public class JunctionService {
         return prop;
     }
 
-    public void pullFromGit() throws IOException {
-
+    public void pullFromGit() throws IOException, GitAPIException {
+        final File localPath;
         try (Repository repository = cloneRepository()) {
 
             try (Git git = new Git(repository)) {
@@ -136,9 +137,8 @@ public class JunctionService {
 
                 System.out.println("Pulled from the remote repository:   " + call   );
             }
-        } catch (GitAPIException e) {
-            e.printStackTrace();
         }
+
     }
 
     private static Repository cloneRepository() throws IOException, GitAPIException {
