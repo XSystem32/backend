@@ -134,17 +134,6 @@
   {
     "id": "43a3c83f-4530-4865-a9a4-a08351e9541b",
     "creationDate": "Mar 11, 2020 1:24:34 PM",
-    "userCreated": "Steam",
-    "host": "Offentlig",
-    "context": "/ddd",
-    "ordning": "ATP UDK",
-    "server": "LDAP 2",
-    "datoPilo": "Mar 11, 2020 1:00:00 AM",
-    "datoProd": "Mar 11, 2020 1:00:00 AM"
-  },
-  {
-    "id": "43a3c83f-4530-4865-a9a4-a08351e9541b",
-    "creationDate": "Mar 11, 2020 1:24:34 PM",
     "userCreated": "Brien",
     "host": "Privat",
     "context": "/ddd",
@@ -153,4 +142,5 @@
     "datoPilo": "Mar 11, 2020 1:00:00 AM",
     "datoProd": "Mar 11, 2020 1:00:00 AM"
   }
+  
 ]
