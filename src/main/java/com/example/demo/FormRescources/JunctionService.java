@@ -44,7 +44,7 @@ public class JunctionService {
 
         saveToDisk(currentAllJunctions);
         addToGit(junction.getUserCreated() + " har oprettet junction " + junction.getContext() + " til " + junction.getHost());
-        checkIfExists(junction);
+        //checkIfExists(junction);
         return junction;
     }
 
@@ -160,8 +160,14 @@ public class JunctionService {
         }
     }
 
-    public void checkIfExists(Junction junction) throws IOException {
-
-    }
+//    public void checkIfExists(Junction junction) throws IOException {
+//        List<Junction> junctions = findAll();
+//
+//        for (Junction newJunction : junctions) {
+//            if(junctions.contains(newJunction)) {
+//
+//            }
+//        }
+//    }
 
 }
