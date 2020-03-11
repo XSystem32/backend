@@ -20,11 +20,10 @@ import java.util.stream.Collectors;
 @Service
 public class JunctionService {
 
-
-
     public List<Junction> findAll() throws IOException {
         InputStream is = null;
         try {
+            //testPullGit();
             pullFromGit();
             is = new FileInputStream("c:\\/Users/yaz/Test/src/main//resources/forms.json");
             Reader r = new InputStreamReader(is, "UTF-8");
@@ -43,7 +42,7 @@ public class JunctionService {
         currentAllJunctions.add(junction);
 
         saveToDisk(currentAllJunctions);
-        addToGit(junction.getUserCreated() + " har oprettet junction " + junction.getContext() + " til " + junction.getHost());
+        //addToGit(junction.getUserCreated() + " har oprettet junction " + junction.getContext() + " til " + junction.getHost());
         //checkIfExists(junction);
         return junction;
     }
@@ -65,7 +64,7 @@ public class JunctionService {
         List<Junction> all = findAll();
         List<Junction> collect = all.stream().filter(junction -> !junction.getId().equals(id)).collect(Collectors.toList());
         saveToDisk(collect);
-        addToGit("Deleted the junction");
+        //addToGit("Deleted the junction");
     }
 
     public Junction findById(String id) throws IOException {
@@ -129,7 +128,7 @@ public class JunctionService {
     }
 
     public void pullFromGit() throws IOException, GitAPIException {
-        final File localPath;
+        File localPath = File.createTempFile("TestGitRepository", "", new File("c:\\/Users/yaz/Documents/TempFiles"));
         try (Repository repository = cloneRepository()) {
 
             try (Git git = new Git(repository)) {
@@ -138,7 +137,25 @@ public class JunctionService {
                 System.out.println("Pulled from the remote repository:   " + call   );
             }
         }
+        FileUtils.deleteDirectory(localPath);
 
+    }
+
+    public void testPullGit() throws GitAPIException, IOException {
+
+        Properties prop = readPropertiesFile("c:\\/Users/yaz/Test/src/main/resources/gitinfo.properties");
+
+        File gitWorkDir = new File(prop.getProperty("localrepo"));
+        Git git = Git.open(gitWorkDir);
+        UsernamePasswordCredentialsProvider user = new UsernamePasswordCredentialsProvider(prop.getProperty("username"), prop.getProperty("password"));
+        PullCommand pullCommand = git.pull();
+        PullResult result = pullCommand.setCredentialsProvider(user).setRemote("origin").setRemoteBranchName("master").call();
+
+        if (result.isSuccessful()) {
+            System.out.println("Succesful pull");
+        } else {
+            System.out.println("Not succesful");
+        }
     }
 
     private static Repository cloneRepository() throws IOException, GitAPIException {
