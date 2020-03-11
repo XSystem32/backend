@@ -121,10 +121,13 @@
     "datoProd": "Apr 3, 2020 2:00:00 AM"
   },
   {
-    "id": "4105df81-bcce-42dc-aaeb-d5245ecf5f55",
-    "creationDate": "Mar 11, 2020 1:16:04 PM",
-    "userCreated": "",
-    "context": "",
+    "id": "8d173144-1f55-4548-8c72-ef8b34ec074f",
+    "creationDate": "Mar 11, 2020 1:18:10 PM",
+    "userCreated": "Hans",
+    "host": "Erhverv",
+    "context": "/ua",
+    "ordning": "ATP UDK",
+    "server": "LDAP 2",
     "datoPilo": "Mar 11, 2020 1:00:00 AM",
     "datoProd": "Mar 11, 2020 1:00:00 AM"
   }
