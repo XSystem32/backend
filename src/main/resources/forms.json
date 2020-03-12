@@ -143,24 +143,10 @@
     "datoProd": "Mar 12, 2020 1:00:00 AM"
   },
   {
-    "id": "5613a8ee-88bb-4cc0-aeda-114ffd286c47",
-    "creationDate": "Mar 12, 2020 10:52:15 AM",
-    "userCreated": "Namajunas",
-    "host": "Erhverv",
-    "context": "/carao",
-    "ordning": "ATP UDK",
-    "server": "LDAP 2",
-    "datoPilo": "Mar 19, 2020 1:00:00 AM",
-    "datoProd": "Mar 19, 2020 1:00:00 AM"
-  },
-  {
-    "id": "d5a29761-093b-4d94-ae84-4767331b9a0b",
-    "creationDate": "Mar 12, 2020 11:00:55 AM",
-    "userCreated": "Ferrice",
-    "host": "Erhverv",
-    "context": "/bravo",
-    "ordning": "ATP UDK",
-    "server": "Liberty Server",
+    "id": "97b20e0a-d776-49ed-881a-e5c902f86437",
+    "creationDate": "Mar 12, 2020 11:46:21 AM",
+    "userCreated": "",
+    "context": "/jahha",
     "datoPilo": "Mar 12, 2020 1:00:00 AM",
     "datoProd": "Mar 12, 2020 1:00:00 AM"
   }
