@@ -35,7 +35,7 @@ public class JunctionService {
 
     }
 
-    public Junction create(Junction junction) throws IOException, GitAPIException, URISyntaxException {
+    public Junction create(Junction junction) {
 
         try {
             if (!findContext(junction.getContext())) {
