@@ -72,7 +72,7 @@ public class JunctionService {
         List<Junction> all = findAll();
         List<Junction> collect = all.stream().filter(junction -> !junction.getId().equals(id)).collect(Collectors.toList());
         saveToDisk(collect);
-        //addToGit("Deleted the junction");
+        addToGit("Deleted the junction");
     }
 
     public Junction findById(String id) throws IOException {

@@ -130,31 +130,5 @@
     "inError": false,
     "datoPilo": "Mar 11, 2020 1:00:00 AM",
     "datoProd": "Mar 11, 2020 1:00:00 AM"
-  },
-  {
-    "id": "298292c8-2e74-4a23-972a-af8aaee2ba44",
-    "creationDate": "Mar 12, 2020 1:12:26 PM",
-    "userCreated": "Garson",
-    "host": "Erhverv",
-    "context": "/mela",
-    "ordning": "Feriepenge",
-    "server": "LDAP 2",
-    "inError": true,
-    "errorMessage": "",
-    "datoPilo": "Mar 12, 2020 1:00:00 AM",
-    "datoProd": "Mar 12, 2020 1:00:00 AM"
-  },
-  {
-    "id": "a8937b35-f0af-4d88-97e9-eea24f530034",
-    "creationDate": "Mar 12, 2020 1:34:04 PM",
-    "userCreated": "yaz",
-    "host": "Erhverv",
-    "context": "/yaz",
-    "ordning": "Folkespension",
-    "server": "ISAM",
-    "inError": true,
-    "errorMessage": "",
-    "datoPilo": "Mar 19, 2020 1:00:00 AM",
-    "datoProd": "Mar 26, 2020 1:00:00 AM"
   }
 ]
