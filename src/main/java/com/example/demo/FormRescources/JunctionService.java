@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.eclipse.jgit.api.*;
 import org.eclipse.jgit.api.errors.*;
+import org.eclipse.jgit.lib.Constants;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.transport.URIish;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
@@ -23,7 +24,6 @@ public class JunctionService {
     public List<Junction> findAll() throws IOException {
         InputStream is = null;
         try {
-            //testPullGit();
             pullFromGit();
             is = new FileInputStream("c:\\/Users/yaz/Test/src/main//resources/forms.json");
             Reader r = new InputStreamReader(is, "UTF-8");
@@ -37,14 +37,22 @@ public class JunctionService {
 
     public Junction create(Junction junction) throws IOException, GitAPIException, URISyntaxException {
 
-        junction.setId(UUID.randomUUID().toString());
-        List<Junction> currentAllJunctions = findAll();
-        currentAllJunctions.add(junction);
+        try {
+            if (!findContext(junction.getContext())) {
+                junction = null;
+            }
 
-        saveToDisk(currentAllJunctions);
-        //addToGit(junction.getUserCreated() + " har oprettet junction " + junction.getContext() + " til " + junction.getHost());
-        //checkIfExists(junction);
-        return junction;
+            assert junction != null;
+            junction.setId(UUID.randomUUID().toString());
+            List<Junction> currentAllJunctions = findAll();
+            currentAllJunctions.add(junction);
+            saveToDisk(currentAllJunctions);
+            addToGit(junction.getUserCreated() + " har oprettet junction " + junction.getContext() + " til " + junction.getHost());
+            return junction;
+        } catch (IOException | NullPointerException e) {
+            e.getMessage();
+        }
+        return null;
     }
 
     private void saveToDisk(List<Junction> currentAllJunctions) {
@@ -128,40 +136,24 @@ public class JunctionService {
     }
 
     public void pullFromGit() throws IOException, GitAPIException {
-        File localPath = File.createTempFile("TestGitRepository", "", new File("c:\\/Users/yaz/Documents/TempFiles"));
+        final File localPath;
         try (Repository repository = cloneRepository()) {
+            localPath = repository.getWorkTree();
 
             try (Git git = new Git(repository)) {
                 PullResult call = git.pull().call();
 
                 System.out.println("Pulled from the remote repository:   " + call   );
+                localPath.deleteOnExit();
             }
         }
-        FileUtils.deleteDirectory(localPath);
-
-    }
-
-    public void testPullGit() throws GitAPIException, IOException {
-
-        Properties prop = readPropertiesFile("c:\\/Users/yaz/Test/src/main/resources/gitinfo.properties");
-
-        File gitWorkDir = new File(prop.getProperty("localrepo"));
-        Git git = Git.open(gitWorkDir);
-        UsernamePasswordCredentialsProvider user = new UsernamePasswordCredentialsProvider(prop.getProperty("username"), prop.getProperty("password"));
-        PullCommand pullCommand = git.pull();
-        PullResult result = pullCommand.setCredentialsProvider(user).setRemote("origin").setRemoteBranchName("master").call();
-
-        if (result.isSuccessful()) {
-            System.out.println("Succesful pull");
-        } else {
-            System.out.println("Not succesful");
-        }
+        //FileUtils.deleteDirectory(localPath);
     }
 
     private static Repository cloneRepository() throws IOException, GitAPIException {
         // prepare a new folder for the cloned repository
         Properties prop = readPropertiesFile("c:\\/Users/yaz/Test/src/main/resources/gitinfo.properties");
-        File localPath = File.createTempFile("TestGitRepository", "", new File("c:\\/Users/yaz/Documents/TempFiles"));
+        File localPath = File.createTempFile("TestGitRepository", "");
         if(!localPath.delete()) {
             throw new IOException("Could not delete temporary file " + localPath);
         }
@@ -177,14 +169,16 @@ public class JunctionService {
         }
     }
 
-//    public void checkIfExists(Junction junction) throws IOException {
-//        List<Junction> junctions = findAll();
-//
-//        for (Junction newJunction : junctions) {
-//            if(junctions.contains(newJunction)) {
-//
-//            }
-//        }
-//    }
+    public boolean findContext(String context) throws IOException {
+        List<Junction> junctions = findAll();
 
+        if(junctions.stream().anyMatch(junction -> junction.getContext().toLowerCase().contains(context))) {
+            System.out.println("Context exists, could not create new");
+            return false;
+
+        } else {
+            System.out.println("No match found");
+            return true;
+        }
+    }
 }
