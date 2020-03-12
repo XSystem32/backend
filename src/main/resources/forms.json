@@ -7,6 +7,7 @@
     "context": "/leo",
     "ordning": "Folkespension",
     "server": "XFE",
+    "inError": false,
     "datoPilo": "Mar 13, 2020 1:00:00 AM",
     "datoProd": "Mar 13, 2020 1:00:00 AM"
   },
@@ -18,6 +19,7 @@
     "context": "/uva",
     "ordning": "Feriepenge",
     "server": "ISAM",
+    "inError": false,
     "datoPilo": "Mar 6, 2020 1:00:00 AM",
     "datoProd": "Mar 6, 2020 1:00:00 AM"
   },
@@ -29,6 +31,7 @@
     "context": "/hess",
     "ordning": "Feriepenge",
     "server": "XFE",
+    "inError": false,
     "datoPilo": "Mar 26, 2020 1:00:00 AM",
     "datoProd": "Apr 4, 2020 2:00:00 AM"
   },
@@ -40,6 +43,7 @@
     "context": "/jao",
     "ordning": "Feriepenge",
     "server": "Liberty Server",
+    "inError": false,
     "datoPilo": "Mar 12, 2020 1:00:00 AM",
     "datoProd": "Mar 27, 2020 1:00:00 AM"
   },
@@ -51,6 +55,7 @@
     "context": "/hue",
     "ordning": "Feriepenge",
     "server": "Liberty Server",
+    "inError": false,
     "datoPilo": "Apr 3, 2020 2:00:00 AM",
     "datoProd": "Mar 25, 2020 1:00:00 AM"
   },
@@ -62,6 +67,7 @@
     "context": "/oeq",
     "ordning": "AES",
     "server": "LDAP",
+    "inError": false,
     "datoPilo": "Mar 9, 2020 1:00:00 AM",
     "datoProd": "Mar 9, 2020 1:00:00 AM"
   },
@@ -73,6 +79,7 @@
     "context": "1234",
     "ordning": "AES",
     "server": "LDAP",
+    "inError": false,
     "datoPilo": "Mar 9, 2020 1:00:00 AM",
     "datoProd": "Mar 9, 2020 1:00:00 AM"
   },
@@ -84,6 +91,7 @@
     "context": "/ddd",
     "ordning": "Folkespension",
     "server": "Liberty Server",
+    "inError": false,
     "datoPilo": "Mar 9, 2020 1:00:00 AM",
     "datoProd": "Mar 9, 2020 1:00:00 AM"
   },
@@ -95,6 +103,7 @@
     "context": "/morten",
     "ordning": "Feriepenge",
     "server": "ISAM",
+    "inError": false,
     "datoPilo": "Mar 19, 2020 1:00:00 AM",
     "datoProd": "Mar 26, 2020 1:00:00 AM"
   },
@@ -106,6 +115,7 @@
     "context": "/ddd",
     "ordning": "Folkespension",
     "server": "ISAM",
+    "inError": false,
     "datoPilo": "Mar 9, 2020 1:00:00 AM",
     "datoProd": "Mar 9, 2020 1:00:00 AM"
   },
@@ -117,6 +127,7 @@
     "context": "/jaasssa",
     "ordning": "ATP UDK",
     "server": "LDAP",
+    "inError": false,
     "datoPilo": "Mar 11, 2020 1:00:00 AM",
     "datoProd": "Mar 11, 2020 1:00:00 AM"
   },
@@ -128,6 +139,7 @@
     "context": "/hue",
     "ordning": "Folkespension",
     "server": "LDAP 2",
+    "inError": false,
     "datoPilo": "Mar 12, 2020 1:00:00 AM",
     "datoProd": "Mar 12, 2020 1:00:00 AM"
   },
@@ -139,6 +151,7 @@
     "context": "/janan",
     "ordning": "ATP UDK",
     "server": "ISAM",
+    "inError": false,
     "datoPilo": "Mar 12, 2020 1:00:00 AM",
     "datoProd": "Mar 12, 2020 1:00:00 AM"
   },
@@ -147,6 +160,7 @@
     "creationDate": "Mar 12, 2020 11:46:21 AM",
     "userCreated": "",
     "context": "/jahha",
+    "inError": false,
     "datoPilo": "Mar 12, 2020 1:00:00 AM",
     "datoProd": "Mar 12, 2020 1:00:00 AM"
   },
@@ -158,6 +172,33 @@
     "context": "/herasa",
     "ordning": "ATP UDK",
     "server": "ISAM",
+    "inError": false,
+    "datoPilo": "Mar 12, 2020 1:00:00 AM",
+    "datoProd": "Mar 12, 2020 1:00:00 AM"
+  },
+  {
+    "id": "35df1de2-ea22-4649-ab6e-365dbb10a751",
+    "creationDate": "Mar 12, 2020 1:06:43 PM",
+    "userCreated": "Daimon",
+    "host": "Intern",
+    "context": "/hue",
+    "ordning": "ATP UDK",
+    "server": "LDAP 2",
+    "inError": true,
+    "errorMessage": "Junctoin already exists",
+    "datoPilo": "Mar 20, 2020 1:00:00 AM",
+    "datoProd": "Mar 28, 2020 1:00:00 AM"
+  },
+  {
+    "id": "df791e84-5f63-4739-8d7c-ceaea5fbed48",
+    "creationDate": "Mar 12, 2020 1:07:58 PM",
+    "userCreated": "Xander",
+    "host": "Erhverv",
+    "context": "/huelca",
+    "ordning": "Folkespension",
+    "server": "XFE",
+    "inError": true,
+    "errorMessage": "",
     "datoPilo": "Mar 12, 2020 1:00:00 AM",
     "datoProd": "Mar 12, 2020 1:00:00 AM"
   }

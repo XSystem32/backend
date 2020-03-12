@@ -14,6 +14,24 @@ public class Junction {
     private String context;
     private String ordning;
     private String server;
+    private boolean inError;
+    private String errorMessage;
+
+    public boolean isInError() {
+        return inError;
+    }
+
+    public void setInError(boolean inError) {
+        this.inError = inError;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
 
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date datoPilo;
