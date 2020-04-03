@@ -1,0 +1,19 @@
+{
+  "/varro": {
+    "sub": {
+      "/fri": {
+        "acl": "fri"
+      }
+    },
+    "acl": "atp_myndighed_acl"
+  }
+}{
+  "/laaa": {
+    "sub": {
+      "/fri": {
+        "acl": "fri"
+      }
+    },
+    "acl": "atp_myndighed_acl"
+  }
+}

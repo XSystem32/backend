@@ -9,8 +9,10 @@ import org.eclipse.jgit.lib.Constants;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.transport.URIish;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 import java.io.*;
+import java.lang.reflect.Type;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -24,12 +26,12 @@ public class JunctionService {
     public List<Junction> findAll() throws IOException {
         InputStream is = null;
         try {
-            pullFromGit();
-            is = new FileInputStream("c:\\/Users/yaz/Test/src/main//resources/forms.json");
+            //pullFromGit();
+            is = new FileInputStream("c:\\/Users/eldre/IdeaProjects/backend/src/main/resources/forms.json");
             Reader r = new InputStreamReader(is, "UTF-8");
             Gson gson = new GsonBuilder().create();
             return gson.fromJson(r, new TypeToken<List<Junction>>() {}.getType());
-        } catch (FileNotFoundException | UnsupportedEncodingException | GitAPIException e) {
+        } catch (FileNotFoundException | UnsupportedEncodingException e) {
           return new ArrayList();
         }
 
@@ -47,7 +49,9 @@ public class JunctionService {
             List<Junction> currentAllJunctions = findAll();
             currentAllJunctions.add(junction);
             saveToDisk(currentAllJunctions);
-            addToGit(junction.getUserCreated() + " har oprettet junction " + junction.getContext() + " til " + junction.getHost());
+            writeToAcl(junction.getContext());
+            writeToJunctions(junction.getContext());
+            //addToGit(junction.getUserCreated() + " har oprettet junction " + junction.getContext() + " til " + junction.getHost());
             return junction;
         } catch (IOException | NullPointerException e) {
             e.getMessage();
@@ -60,7 +64,7 @@ public class JunctionService {
 
         Writer writer = null;
         try {
-            writer = Files.newBufferedWriter(Paths.get("c:\\/Users/yaz/Test/src/main//resources/forms.json"));
+            writer = Files.newBufferedWriter(Paths.get("c:\\/Users/eldre/IdeaProjects/backend/src/main/resources/forms.json"));
             gson.toJson(currentAllJunctions, writer);
             writer.close();
         } catch (IOException e) {
@@ -72,7 +76,7 @@ public class JunctionService {
         List<Junction> all = findAll();
         List<Junction> collect = all.stream().filter(junction -> !junction.getId().equals(id)).collect(Collectors.toList());
         saveToDisk(collect);
-        addToGit("Deleted the junction");
+        //addToGit("Deleted the junction");
     }
 
     public Junction findById(String id) throws IOException {
@@ -85,7 +89,7 @@ public class JunctionService {
         System.out.println("Start af addToGit");
 
         //Initialize property file
-        Properties prop = readPropertiesFile("c:\\/Users/yaz/Test/src/main/resources/gitinfo.properties");
+        Properties prop = readPropertiesFile("c:\\/Users/eldre/IdeaProjects/backend/src/main/resources/gitinfo.properties");
 
         try (Git git = Git.open(new File(prop.getProperty("localrepo")))) {
 
@@ -152,7 +156,7 @@ public class JunctionService {
 
     private static Repository cloneRepository() throws IOException, GitAPIException {
         // prepare a new folder for the cloned repository
-        Properties prop = readPropertiesFile("c:\\/Users/yaz/Test/src/main/resources/gitinfo.properties");
+        Properties prop = readPropertiesFile("c:\\/Users/eldre/IdeaProjects/backend/src/main/resources/gitinfo.properties");
         File localPath = File.createTempFile("TestGitRepository", "");
         if(!localPath.delete()) {
             throw new IOException("Could not delete temporary file " + localPath);
@@ -181,4 +185,56 @@ public class JunctionService {
             return true;
         }
     }
+
+    public void writeToAcl(String context) {
+
+        JSONObject mainObject = new JSONObject();
+        JSONObject secondObject = new JSONObject();
+        JSONObject thirdObject = new JSONObject();
+        JSONObject fourthObject = new JSONObject();
+
+        mainObject.put(context, secondObject);
+        secondObject.put("acl", "atp_myndighed_acl");
+        secondObject.put("sub", thirdObject);
+        thirdObject.put("/fri", fourthObject);
+        fourthObject.put("acl", "fri");
+
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        try (BufferedWriter file = new BufferedWriter(new FileWriter("/Users/eldre/IdeaProjects/backend/src/main/resources/acl-tree.json", true))) {
+
+            gson.toJson(mainObject, file);
+            file.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void writeToJunctions(String junction) {
+
+        JSONObject mainObject = new JSONObject();
+        JSONObject secondObject = new JSONObject();
+        mainObject.put(junction, secondObject);
+        secondObject.put("junction_type", "ssl");
+        secondObject.put("basic_auth_mode", "supply");
+        secondObject.put("http_header_ident", "all");
+        secondObject.put("remote_http_header", "all");
+        secondObject.put("request_encoding", "Local Code Page, Binary");
+        secondObject.put("stateful_junction", "yes");
+        secondObject.put("transparent_path_junction", "yes");
+        secondObject.put("mutual_auth", "yes");
+
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        Type mapType = new TypeToken<Map<String, String>>() {}.getType();
+
+        try (BufferedWriter file = new BufferedWriter(new FileWriter("/Users/eldre/IdeaProjects/backend/src/main/resources/junctions.json", true))) {
+
+            gson.toJson(mainObject, mapType, file);
+            file.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
