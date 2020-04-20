@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 @Service
 public class JunctionService {
 
-    public List<Junction> findAll() throws IOException {
+    public List<Junction> findAll() {
         InputStream is = null;
         try {
             //pullFromGit();

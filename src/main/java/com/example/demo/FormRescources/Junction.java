@@ -17,6 +17,22 @@ public class Junction {
     private boolean inError;
     private String errorMessage;
 
+    public Junction(String id, Date creationDate, String userCreated, String host, String context, String ordning, String server, boolean inError, String errorMessage, Date datoPilo, Date datoProd) {
+        this.id = id;
+        this.creationDate = creationDate;
+        this.userCreated = userCreated;
+        this.host = host;
+        this.context = context;
+        this.ordning = ordning;
+        this.server = server;
+        this.inError = inError;
+        this.errorMessage = errorMessage;
+        this.datoPilo = datoPilo;
+        this.datoProd = datoProd;
+    }
+
+
+
     public boolean isInError() {
         return inError;
     }
@@ -39,7 +55,7 @@ public class Junction {
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date datoProd;
 
-    protected Junction() {
+    public Junction() {
 
     }
 

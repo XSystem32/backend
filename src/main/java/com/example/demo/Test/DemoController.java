@@ -15,7 +15,7 @@ public class DemoController {
         return new TestBean("Hello there - changed");
     }
 
-    @GetMapping(path = "/test-bean/path-variable/{name}")
+    @GetMapping(path = "/junction/pa/{name}")
     public TestBean testBeanVariable(@PathVariable String name) {
         return new TestBean(String.format("Hello there, %s", name));
     }
