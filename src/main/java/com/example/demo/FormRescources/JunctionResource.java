@@ -38,6 +38,7 @@ public class JunctionResource {
 
     @PutMapping("/junctions/create")
     public Junction createJunction(@RequestBody Junction junction) throws IOException, GitAPIException, URISyntaxException {
+        System.out.println(new Response(junction.getId() + "inserted", Boolean.TRUE));
         return junctionService.create(junction);
     }
 

@@ -6,9 +6,64 @@
       }
     },
     "acl": "atp_myndighed_acl"
-  }
-}{
+  },
   "/laaa": {
+    "sub": {
+      "/fri": {
+        "acl": "fri"
+      }
+    },
+    "acl": "atp_myndighed_acl"
+  },
+  "DDD": {
+    "sub": {
+      "/fri": {
+        "acl": "fri"
+      }
+    },
+    "acl": "atp_myndighed_acl"
+  },
+  "/jjjjaasdsad": {
+    "sub": {
+      "/fri": {
+        "acl": "fri"
+      }
+    },
+    "acl": "atp_myndighed_acl"
+  },
+  "/theverynewone": {
+    "sub": {
+      "/fri": {
+        "acl": "fri"
+      }
+    },
+    "acl": "atp_myndighed_acl"
+  },
+  "/jammo": {
+    "sub": {
+      "/fri": {
+        "acl": "fri"
+      }
+    },
+    "acl": "atp_myndighed_acl"
+  },
+  "/nimmas": {
+    "sub": {
+      "/fri": {
+        "acl": "fri"
+      }
+    },
+    "acl": "atp_myndighed_acl"
+  },
+  "/fkafhwaflha": {
+    "sub": {
+      "/fri": {
+        "acl": "fri"
+      }
+    },
+    "acl": "atp_myndighed_acl"
+  },
+  "/hhaannss": {
     "sub": {
       "/fri": {
         "acl": "fri"

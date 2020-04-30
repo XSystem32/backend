@@ -2,8 +2,12 @@ package com.example.demo.FormRescources;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import static org.assertj.core.api.Assertions.assertThat;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 
@@ -17,6 +21,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MockMvcBuilder;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -27,9 +32,10 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.timeout;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.head;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.io.IOException;
@@ -45,8 +51,7 @@ class JunctionServiceTest {
 
     private MockMvc mockMvc;
 
-    @InjectMocks
-    JunctionResource junctionResource;
+    Gson gson = new Gson();
 
     @Autowired
     private JunctionService junctionService;
@@ -59,41 +64,43 @@ class JunctionServiceTest {
 
     ObjectMapper objectMapper = new ObjectMapper();
 
-    @Before
-    private void setUp() {
+    @BeforeEach
+    public void setUp() {
         mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
     }
 
     @Test
     public void findAll() throws Exception {
-
         when(repository.findAll()).thenReturn(Stream.of(new Junction("1", new Date(), "David", "INTERN", "/somecontextt","AES", "Liberty Server", false,"Went wrong", new Date(), new Date()),
                 new Junction("2", new Date(), "Hans", "Offentlig", "/somecontexts","AES", "LDAP", false,"Not wrong", new Date(), new Date())).collect(Collectors.toList()));
         assertEquals(2, junctionService.findAll().size());
 
         mockMvc.perform(MockMvcRequestBuilders.get("/junctions").accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
-
-
-
     }
 
     @Test
     void createTest() throws Exception {
-        //when(junctionService.create(any(Junction.class))).thenReturn(true);
-
         Junction junction = new Junction();
         junction.setId("A1B2D3F4G");
-        junction.setCreationDate(new Date());
         junction.setUserCreated("Mads");
         junction.setHost("Erhverv");
         junction.setContext("/somenewjunction");
         junction.setOrdning("ATP Investering");
         junction.setServer("Liberty Server");
-        junction.setDatoPilo(new Date());
-        junction.setDatoProd(new Date());
+
+        String jsonJunctionString = "{\"id\":\"A1B2D3F4G\"," +
+                "\"userCreated\":\"Mads\"," +
+                "\"host\":\"Erhverv\"," +
+                "\"context\":\"/somenewjunction\"," +
+                "\"ordning\":\"ATP Investering\"," +
+                "\"server\":\"Liberty Server\"}";
+
+        Junction actualObject = gson.fromJson(jsonJunctionString, Junction.class);
 
         when(junctionService.create(any(Junction.class))).thenReturn(junction);
-        mockMvc.perform(MockMvcRequestBuilders.post("/junctions/create").content(String.valueOf(junction)).contentType(MediaType.APPLICATION_JSON)).andExpect(status().is4xxClientError()).andReturn();
+
+        assertEquals(junction, actualObject);
+        mockMvc.perform(MockMvcRequestBuilders.put("/junctions/create").content(String.valueOf(junction)).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
     }
 
     @Test
@@ -102,10 +109,9 @@ class JunctionServiceTest {
         Junction junction = new Junction("1", new Date(), "David", "INTERN", "/somecontextt","AES", "Liberty Server", false,"Went wrong", new Date(), new Date());
         junctions.add(junction);
 
-        when(junctionService.deleteById(anyString())).thenReturn(junction);
-        mockMvc.perform(MockMvcRequestBuilders.delete("/junctions/" + junction.getId())).andExpect(status().isNoContent());
+        junctions.remove(junction);
 
-        //when(junctionService.deleteById()).thenReturn(junctions.remove(junction));
+        mockMvc.perform(MockMvcRequestBuilders.delete("/junctions/" + junctions.get(0)).accept(MediaType.APPLICATION_JSON)).andExpect(status().isNoContent());
     }
 
 

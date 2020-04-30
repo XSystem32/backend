@@ -2,17 +2,14 @@ package com.example.demo.FormRescources;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.eclipse.jgit.api.*;
 import org.eclipse.jgit.api.errors.*;
-import org.eclipse.jgit.lib.Constants;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.transport.URIish;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 import java.io.*;
-import java.lang.reflect.Type;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -186,35 +183,29 @@ public class JunctionService {
         }
     }
 
+    //Methode til at skrive til acl-tree.json
     public void writeToAcl(String context) {
 
-        JSONObject mainObject = new JSONObject();
+        Map <String, JSONObject> localAcl = openAclMapFile();
         JSONObject secondObject = new JSONObject();
         JSONObject thirdObject = new JSONObject();
         JSONObject fourthObject = new JSONObject();
 
-        mainObject.put(context, secondObject);
         secondObject.put("acl", "atp_myndighed_acl");
         secondObject.put("sub", thirdObject);
         thirdObject.put("/fri", fourthObject);
         fourthObject.put("acl", "fri");
 
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        localAcl.put(context, secondObject);
 
-        try (BufferedWriter file = new BufferedWriter(new FileWriter("/Users/eldre/IdeaProjects/backend/src/main/resources/acl-tree.json", true))) {
+        toAclFile(localAcl);
 
-            gson.toJson(mainObject, file);
-            file.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
+    //Methode til at skrive til junctions.json
     public void writeToJunctions(String junction) {
-
-        JSONObject mainObject = new JSONObject();
+        Map <String, JSONObject> localJunctions = openJunctionsMapFile();
         JSONObject secondObject = new JSONObject();
-        mainObject.put(junction, secondObject);
         secondObject.put("junction_type", "ssl");
         secondObject.put("basic_auth_mode", "supply");
         secondObject.put("http_header_ident", "all");
@@ -224,14 +215,61 @@ public class JunctionService {
         secondObject.put("transparent_path_junction", "yes");
         secondObject.put("mutual_auth", "yes");
 
+        localJunctions.put(junction, secondObject);
+
+        toJunctionsFile(localJunctions);
+    }
+
+
+    //Åbner junctions.json som en map, så man kan tilføje nye junctions til den
+    public Map <String, JSONObject> openJunctionsMapFile() {
+        InputStream is = null;
+        try {
+            is = new FileInputStream("c:\\/Users/eldre/IdeaProjects/backend/src/main/resources/junctions.json");
+            Reader r = new InputStreamReader(is, "UTF-8");
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            return gson.fromJson(r, new TypeToken<Map<String, JSONObject>>() {}.getType());
+        } catch (FileNotFoundException | UnsupportedEncodingException e) {
+            return new HashMap<>();
+        }
+    }
+
+    //Skriver til junctions.json
+    public void toJunctionsFile(Map<String, JSONObject> currentAllObjects) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-        Type mapType = new TypeToken<Map<String, String>>() {}.getType();
+        Writer writer = null;
+        try {
+            writer = Files.newBufferedWriter(Paths.get("c:\\/Users/eldre/IdeaProjects/backend/src/main/resources/junctions.json"));
+            gson.toJson(currentAllObjects, writer);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-        try (BufferedWriter file = new BufferedWriter(new FileWriter("/Users/eldre/IdeaProjects/backend/src/main/resources/junctions.json", true))) {
+    //Åbner acl-tree.json som en map, så man kan tilføje nye junctions til den
+    public Map <String, JSONObject> openAclMapFile() {
+        InputStream is = null;
+        try {
+            is = new FileInputStream("c:\\/Users/eldre/IdeaProjects/backend/src/main/resources/acl-tree.json");
+            Reader r = new InputStreamReader(is, "UTF-8");
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            return gson.fromJson(r, new TypeToken<Map<String, JSONObject>>() {}.getType());
+        } catch (FileNotFoundException | UnsupportedEncodingException e) {
+            return new HashMap<>();
+        }
+    }
 
-            gson.toJson(mainObject, mapType, file);
-            file.flush();
+    //Skriver til acl-tree.json
+    public void toAclFile(Map<String, JSONObject> currentAllObjects) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        Writer writer = null;
+        try {
+            writer = Files.newBufferedWriter(Paths.get("c:\\/Users/eldre/IdeaProjects/backend/src/main/resources/acl-tree.json"));
+            gson.toJson(currentAllObjects, writer);
+            writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

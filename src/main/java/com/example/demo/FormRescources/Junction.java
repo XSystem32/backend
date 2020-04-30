@@ -31,7 +31,14 @@ public class Junction {
         this.datoProd = datoProd;
     }
 
-
+    public Junction(String id, String userCreated, String host, String context, String ordning, String server) {
+        this.id = id;
+        this.userCreated = userCreated;
+        this.host = host;
+        this.context = context;
+        this.ordning = ordning;
+        this.server = server;
+    }
 
     public boolean isInError() {
         return inError;
@@ -56,7 +63,6 @@ public class Junction {
     private Date datoProd;
 
     public Junction() {
-
     }
 
     public String getId() {
