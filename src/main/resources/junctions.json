@@ -38,5 +38,105 @@
     "remote_http_header": "all",
     "mutual_auth": "yes",
     "transparent_path_junction": "yes"
+  },
+  "/huaiop": {
+    "junction_type": "ssl",
+    "http_header_ident": "all",
+    "request_encoding": "Local Code Page, Binary",
+    "stateful_junction": "yes",
+    "basic_auth_mode": "supply",
+    "remote_http_header": "all",
+    "mutual_auth": "yes",
+    "transparent_path_junction": "yes"
+  },
+  "/mamamama": {
+    "junction_type": "ssl",
+    "http_header_ident": "all",
+    "request_encoding": "Local Code Page, Binary",
+    "stateful_junction": "yes",
+    "basic_auth_mode": "supply",
+    "remote_http_header": "all",
+    "mutual_auth": "yes",
+    "transparent_path_junction": "yes"
+  },
+  "/jaojaojao": {
+    "junction_type": "ssl",
+    "http_header_ident": "all",
+    "request_encoding": "Local Code Page, Binary",
+    "stateful_junction": "yes",
+    "basic_auth_mode": "supply",
+    "remote_http_header": "all",
+    "mutual_auth": "yes",
+    "transparent_path_junction": "yes"
+  },
+  "/njna": {
+    "junction_type": "ssl",
+    "http_header_ident": "all",
+    "request_encoding": "Local Code Page, Binary",
+    "stateful_junction": "yes",
+    "basic_auth_mode": "supply",
+    "remote_http_header": "all",
+    "mutual_auth": "yes",
+    "transparent_path_junction": "yes"
+  },
+  "/dddf": {
+    "junction_type": "ssl",
+    "http_header_ident": "all",
+    "request_encoding": "Local Code Page, Binary",
+    "stateful_junction": "yes",
+    "basic_auth_mode": "supply",
+    "remote_http_header": "all",
+    "mutual_auth": "yes",
+    "transparent_path_junction": "yes"
+  },
+  "/dddd": {
+    "junction_type": "ssl",
+    "http_header_ident": "all",
+    "request_encoding": "Local Code Page, Binary",
+    "stateful_junction": "yes",
+    "basic_auth_mode": "supply",
+    "remote_http_header": "all",
+    "mutual_auth": "yes",
+    "transparent_path_junction": "yes"
+  },
+  "//ddd": {
+    "junction_type": "ssl",
+    "http_header_ident": "all",
+    "request_encoding": "Local Code Page, Binary",
+    "stateful_junction": "yes",
+    "basic_auth_mode": "supply",
+    "remote_http_header": "all",
+    "mutual_auth": "yes",
+    "transparent_path_junction": "yes"
+  },
+  "/jjaahh": {
+    "junction_type": "ssl",
+    "http_header_ident": "all",
+    "request_encoding": "Local Code Page, Binary",
+    "stateful_junction": "yes",
+    "basic_auth_mode": "supply",
+    "remote_http_header": "all",
+    "mutual_auth": "yes",
+    "transparent_path_junction": "yes"
+  },
+  "/dawlkdnwnald": {
+    "junction_type": "ssl",
+    "http_header_ident": "all",
+    "request_encoding": "Local Code Page, Binary",
+    "stateful_junction": "yes",
+    "basic_auth_mode": "supply",
+    "remote_http_header": "all",
+    "mutual_auth": "yes",
+    "transparent_path_junction": "yes"
+  },
+  "": {
+    "junction_type": "ssl",
+    "http_header_ident": "all",
+    "request_encoding": "Local Code Page, Binary",
+    "stateful_junction": "yes",
+    "basic_auth_mode": "supply",
+    "remote_http_header": "all",
+    "mutual_auth": "yes",
+    "transparent_path_junction": "yes"
   }
 }

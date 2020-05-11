@@ -20,15 +20,15 @@ import java.util.stream.Collectors;
 @Service
 public class JunctionService {
 
-    public List<Junction> findAll() {
+    public List<Junction> findAll() throws IOException, InterruptedException {
         InputStream is = null;
         try {
-            //pullFromGit();
+            pullFromGit();
             is = new FileInputStream("c:\\/Users/eldre/IdeaProjects/backend/src/main/resources/forms.json");
             Reader r = new InputStreamReader(is, "UTF-8");
             Gson gson = new GsonBuilder().create();
             return gson.fromJson(r, new TypeToken<List<Junction>>() {}.getType());
-        } catch (FileNotFoundException | UnsupportedEncodingException e) {
+        } catch (FileNotFoundException | UnsupportedEncodingException | GitAPIException e) {
           return new ArrayList();
         }
 
@@ -48,9 +48,9 @@ public class JunctionService {
             saveToDisk(currentAllJunctions);
             writeToAcl(junction.getContext());
             writeToJunctions(junction.getContext());
-            //addToGit(junction.getUserCreated() + " har oprettet junction " + junction.getContext() + " til " + junction.getHost());
+            addToGit(junction.getUserCreated() + " har oprettet junction " + junction.getContext() + " til " + junction.getHost());
             return junction;
-        } catch (IOException | NullPointerException e) {
+        } catch (IOException | NullPointerException | InterruptedException e) {
             e.getMessage();
         }
         return null;
@@ -69,14 +69,14 @@ public class JunctionService {
         }
     }
 
-    public void deleteById(String id) throws IOException {
+    public void deleteById(String id) throws IOException, InterruptedException {
         List<Junction> all = findAll();
         List<Junction> collect = all.stream().filter(junction -> !junction.getId().equals(id)).collect(Collectors.toList());
         saveToDisk(collect);
         //addToGit("Deleted the junction");
     }
 
-    public Junction findById(String id) throws IOException {
+    public Junction findById(String id) throws IOException, InterruptedException {
         List<Junction> junctions = findAll();
         Optional<Junction> first = junctions.stream().filter(junction -> junction.getId().equals(id)).findFirst();
         return first.orElse(null);
@@ -170,7 +170,7 @@ public class JunctionService {
         }
     }
 
-    public boolean findContext(String context) throws IOException {
+    public boolean findContext(String context) throws IOException, InterruptedException {
         List<Junction> junctions = findAll();
 
         if(junctions.stream().anyMatch(junction -> junction.getContext().toLowerCase().contains(context))) {

@@ -70,5 +70,85 @@
       }
     },
     "acl": "atp_myndighed_acl"
+  },
+  "/huaiop": {
+    "sub": {
+      "/fri": {
+        "acl": "fri"
+      }
+    },
+    "acl": "atp_myndighed_acl"
+  },
+  "/mamamama": {
+    "sub": {
+      "/fri": {
+        "acl": "fri"
+      }
+    },
+    "acl": "atp_myndighed_acl"
+  },
+  "/jaojaojao": {
+    "sub": {
+      "/fri": {
+        "acl": "fri"
+      }
+    },
+    "acl": "atp_myndighed_acl"
+  },
+  "/njna": {
+    "sub": {
+      "/fri": {
+        "acl": "fri"
+      }
+    },
+    "acl": "atp_myndighed_acl"
+  },
+  "/dddf": {
+    "sub": {
+      "/fri": {
+        "acl": "fri"
+      }
+    },
+    "acl": "atp_myndighed_acl"
+  },
+  "/dddd": {
+    "sub": {
+      "/fri": {
+        "acl": "fri"
+      }
+    },
+    "acl": "atp_myndighed_acl"
+  },
+  "//ddd": {
+    "sub": {
+      "/fri": {
+        "acl": "fri"
+      }
+    },
+    "acl": "atp_myndighed_acl"
+  },
+  "/jjaahh": {
+    "sub": {
+      "/fri": {
+        "acl": "fri"
+      }
+    },
+    "acl": "atp_myndighed_acl"
+  },
+  "/dawlkdnwnald": {
+    "sub": {
+      "/fri": {
+        "acl": "fri"
+      }
+    },
+    "acl": "atp_myndighed_acl"
+  },
+  "": {
+    "sub": {
+      "/fri": {
+        "acl": "fri"
+      }
+    },
+    "acl": "atp_myndighed_acl"
   }
 }

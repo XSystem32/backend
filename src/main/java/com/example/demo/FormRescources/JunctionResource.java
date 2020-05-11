@@ -22,17 +22,17 @@ public class JunctionResource {
     private JunctionService junctionService;
 
     @GetMapping("/junctions")
-    public List<Junction> getAllJunctions() throws IOException {
+    public List<Junction> getAllJunctions() throws IOException, InterruptedException {
         return junctionService.findAll();
     }
 
     @RequestMapping("/junctions/{id}")
-    public Junction getJunction(@PathVariable String id) throws IOException {
+    public Junction getJunction(@PathVariable String id) throws IOException, InterruptedException {
         return junctionService.findById(id);
     }
 
     @DeleteMapping("/junctions/{id}")
-    public void deleteJunction(@PathVariable String id) throws IOException {
+    public void deleteJunction(@PathVariable String id) throws IOException, InterruptedException {
         junctionService.deleteById(id);
     }
 

@@ -4,6 +4,8 @@ import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Date;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -35,50 +37,57 @@ public class JunctionTestBean {
 
     @Test
     void getContext() {
-        junction.setHost("AES");
+        junction.setContext("/somecontext");
 
-        assertEquals("AES", junction.getHost());
+        assertEquals("/somecontext", junction.getContext());
     }
 
     @Test
     void getOrdning() {
-        junction.setHost("AES");
+        junction.setOrdning("Privat");
 
-        assertEquals("AES", junction.getHost());
+        assertEquals("Privat", junction.getOrdning());
     }
 
     @Test
     void getServer() {
-        junction.setHost("AES");
+        junction.setServer("aub-privat");
 
-        assertEquals("AES", junction.getHost());
+        assertEquals("aub-privat", junction.getServer());
     }
 
     @Test
     void getDatoPilo() {
-        junction.setHost("AES");
+        Date date = new Date();
 
-        assertEquals("AES", junction.getHost());
+        junction.setDatoPilo(date);
+
+
+        assertEquals(date, junction.getDatoPilo());
     }
 
     @Test
     void getDatoProd() {
-        junction.setHost("AES");
+        Date date = new Date();
 
-        assertEquals("AES", junction.getHost());
+        junction.setDatoProd(date);
+
+        assertEquals(date, junction.getDatoProd());
     }
 
     @Test
     void getCreationDate() {
-        junction.setHost("AES");
+        Date date = new Date();
 
-        assertEquals("AES", junction.getHost());
+        junction.setCreationDate(date);
+
+        assertEquals(date, junction.getCreationDate());
     }
 
     @Test
     void getUserCreated() {
-        junction.setHost("AES");
+        junction.setUserCreated("Jabba");
 
-        assertEquals("AES", junction.getHost());
+        assertEquals("Jabba", junction.getUserCreated());
     }
 }

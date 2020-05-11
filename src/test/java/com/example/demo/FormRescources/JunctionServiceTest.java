@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 
 import org.mockito.InjectMocks;
+import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -39,6 +40,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -53,6 +55,8 @@ class JunctionServiceTest {
 
     Gson gson = new Gson();
 
+    JunctionResource junctionResource;
+
     @Autowired
     private JunctionService junctionService;
 
@@ -62,8 +66,6 @@ class JunctionServiceTest {
     @Autowired
     private WebApplicationContext context;
 
-    ObjectMapper objectMapper = new ObjectMapper();
-
     @BeforeEach
     public void setUp() {
         mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
@@ -71,11 +73,21 @@ class JunctionServiceTest {
 
     @Test
     public void findAll() throws Exception {
-        when(repository.findAll()).thenReturn(Stream.of(new Junction("1", new Date(), "David", "INTERN", "/somecontextt","AES", "Liberty Server", false,"Went wrong", new Date(), new Date()),
-                new Junction("2", new Date(), "Hans", "Offentlig", "/somecontexts","AES", "LDAP", false,"Not wrong", new Date(), new Date())).collect(Collectors.toList()));
-        assertEquals(2, junctionService.findAll().size());
+        //Given
+        List <Junction> junctionsMockList = new ArrayList<>();
+        Junction junction = new Junction("1", "David", "INTERN", "/somecontextt","AES", "Liberty Server");
+        Junction junction2 = new Junction("2", "Hans", "Offentlig", "/somecontexts","AES", "LDAP");
+        junctionsMockList.add(junction);
+        junctionsMockList.add(junction2);
 
+        /*when(repository.findAll()).thenReturn(Stream.of(new Junction("1", new Date(), "David", "INTERN", "/somecontextt","AES", "Liberty Server", false,"Went wrong", new Date(), new Date()),
+                new Junction("2", new Date(), "Hans", "Offentlig", "/somecontexts","AES", "LDAP", false,"Not wrong", new Date(), new Date())).collect(Collectors.toList()));*/
+        //When
+        when(junctionService.findAll()).thenReturn(junctionsMockList);
         mockMvc.perform(MockMvcRequestBuilders.get("/junctions").accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
+
+        //Then
+        assertEquals(2, junctionService.findAll().size());
     }
 
     @Test
@@ -99,19 +111,18 @@ class JunctionServiceTest {
 
         when(junctionService.create(any(Junction.class))).thenReturn(junction);
 
-        assertEquals(junction, actualObject);
-        mockMvc.perform(MockMvcRequestBuilders.put("/junctions/create").content(String.valueOf(junction)).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
+        assertEquals(String.valueOf(junction),String.valueOf(actualObject));
+        mockMvc.perform(MockMvcRequestBuilders.put("/junctions/create").content(jsonJunctionString).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
     }
 
     @Test
     public void deleteJunctionTest() throws Exception {
         List<Junction> junctions = new ArrayList<>();
-        Junction junction = new Junction("1", new Date(), "David", "INTERN", "/somecontextt","AES", "Liberty Server", false,"Went wrong", new Date(), new Date());
+        Junction junction = new Junction("1", "David", "INTERN", "/somecontextt","AES", "Liberty Server");
         junctions.add(junction);
 
-        junctions.remove(junction);
-
-        mockMvc.perform(MockMvcRequestBuilders.delete("/junctions/" + junctions.get(0)).accept(MediaType.APPLICATION_JSON)).andExpect(status().isNoContent());
+        mockMvc.perform(MockMvcRequestBuilders.delete("/junctions/" + junctions.remove(junction)).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+        assertThat(junctions.isEmpty());
     }
 
 
