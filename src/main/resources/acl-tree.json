@@ -150,5 +150,29 @@
       }
     },
     "acl": "atp_myndighed_acl"
+  },
+  "/somecontext": {
+    "sub": {
+      "/fri": {
+        "acl": "fri"
+      }
+    },
+    "acl": "atp_myndighed_acl"
+  },
+  "/somenew": {
+    "sub": {
+      "/fri": {
+        "acl": "fri"
+      }
+    },
+    "acl": "atp_myndighed_acl"
+  },
+  "/nand": {
+    "sub": {
+      "/fri": {
+        "acl": "fri"
+      }
+    },
+    "acl": "atp_myndighed_acl"
   }
 }

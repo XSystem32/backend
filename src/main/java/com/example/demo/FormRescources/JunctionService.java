@@ -23,12 +23,12 @@ public class JunctionService {
     public List<Junction> findAll() throws IOException, InterruptedException {
         InputStream is = null;
         try {
-            pullFromGit();
+            //pullFromGit();
             is = new FileInputStream("c:\\/Users/eldre/IdeaProjects/backend/src/main/resources/forms.json");
             Reader r = new InputStreamReader(is, "UTF-8");
             Gson gson = new GsonBuilder().create();
             return gson.fromJson(r, new TypeToken<List<Junction>>() {}.getType());
-        } catch (FileNotFoundException | UnsupportedEncodingException | GitAPIException e) {
+        } catch (FileNotFoundException | UnsupportedEncodingException e) {
           return new ArrayList();
         }
 
@@ -48,7 +48,7 @@ public class JunctionService {
             saveToDisk(currentAllJunctions);
             writeToAcl(junction.getContext());
             writeToJunctions(junction.getContext());
-            addToGit(junction.getUserCreated() + " har oprettet junction " + junction.getContext() + " til " + junction.getHost());
+            //addToGit(junction.getUserCreated() + " har oprettet junction " + junction.getContext() + " til " + junction.getHost());
             return junction;
         } catch (IOException | NullPointerException | InterruptedException e) {
             e.getMessage();

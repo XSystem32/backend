@@ -138,5 +138,35 @@
     "remote_http_header": "all",
     "mutual_auth": "yes",
     "transparent_path_junction": "yes"
+  },
+  "/somecontext": {
+    "junction_type": "ssl",
+    "http_header_ident": "all",
+    "request_encoding": "Local Code Page, Binary",
+    "stateful_junction": "yes",
+    "basic_auth_mode": "supply",
+    "remote_http_header": "all",
+    "mutual_auth": "yes",
+    "transparent_path_junction": "yes"
+  },
+  "/somenew": {
+    "junction_type": "ssl",
+    "http_header_ident": "all",
+    "request_encoding": "Local Code Page, Binary",
+    "stateful_junction": "yes",
+    "basic_auth_mode": "supply",
+    "remote_http_header": "all",
+    "mutual_auth": "yes",
+    "transparent_path_junction": "yes"
+  },
+  "/nand": {
+    "junction_type": "ssl",
+    "http_header_ident": "all",
+    "request_encoding": "Local Code Page, Binary",
+    "stateful_junction": "yes",
+    "basic_auth_mode": "supply",
+    "remote_http_header": "all",
+    "mutual_auth": "yes",
+    "transparent_path_junction": "yes"
   }
 }

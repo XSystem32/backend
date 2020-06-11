@@ -1,11 +1,23 @@
 [
   {
-    "id": "77c13827-bfdf-4d02-bf67-7177ca98d218",
-    "creationDate": "May 11, 2020 10:19:49 AM",
-    "userCreated": "",
-    "context": "",
+    "id": "288d5740-f3ac-493e-aad2-e3c186d121ef",
+    "creationDate": "Jun 3, 2020 1:42:25 PM",
+    "userCreated": "David",
+    "host": "3",
+    "context": "/somecontext",
+    "ordning": "11",
+    "server": "21",
     "inError": false,
-    "datoPilo": "May 11, 2020 2:00:00 AM",
-    "datoProd": "May 11, 2020 2:00:00 AM"
+    "datoPilo": "Jun 3, 2020 2:00:00 AM",
+    "datoProd": "Jun 3, 2020 2:00:00 AM"
+  },
+  {
+    "id": "f77e14b0-4554-4f94-87d4-ce11d9e213dd",
+    "creationDate": "Jun 3, 2020 2:13:38 PM",
+    "userCreated": "",
+    "context": "/nand",
+    "inError": false,
+    "datoPilo": "Jun 3, 2020 2:00:00 AM",
+    "datoProd": "Jun 3, 2020 2:00:00 AM"
   }
 ]
